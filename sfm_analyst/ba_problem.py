@@ -13,12 +13,13 @@ class BaProblem:
         self.objectPointsCollections =  listOfObjectPointCollections
         print("len(self.objectPointsCollections): ",len(self.objectPointsCollections))
         self.imagePoints.clear()
-
+        
         for objectPointCollection in  self.objectPointsCollections:
             objectPointCollection.clearImageIds()
         #generating object point observations, checking which object point is in the image
         for idOfImageCollection in range(0, len(self.imageCollections)):
             for idOfImage, image in self.imageCollections[idOfImageCollection].images.items():
+                self.mapOfCameras[image.camera.name] = image.camera
                 h = 0.5 * image.camera.height #for filtering image points
                 w = 0.5 * image.camera.width #for filtering image points
                 for objectPointCollection in self.objectPointsCollections:
@@ -61,7 +62,8 @@ class BaProblem:
 
         print("number of image points after filtration: ", len(validImagePoints) )      
         imagePoints = validImagePoints
-
+    
     imageCollections = []
     objectPointsCollections = []
     imagePoints = []
+    mapOfCameras = {}

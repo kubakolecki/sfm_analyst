@@ -29,7 +29,7 @@ for i in trueidc[0]:
 
 
 flightMissionImages = geometry.ImageCollection()
-missionCamera = geometry.PinholeCamera(pixelSizeMilimeters=0.004, numberOfRows = 4000, numberOfColumns= 6000, principalDistanceMilimeters = 20.0)
+missionCamera = geometry.PinholeCamera(name = "myCamera" , pixelSizeMilimeters=0.004, numberOfRows = 4000, numberOfColumns= 6000, principalDistanceMilimeters = 20.0)
 
 sfmio.importFromExternalOrientationTextfile("CaliforniaEO.txt",' ', flightMissionImages, "xyz", missionCamera )
 sfmio.writeImageCollectionToObj(flightMissionImages, "test", imageWidthInMeters = 10, axesLenghtInMeters = 6.25)
@@ -72,3 +72,5 @@ print("len(listOfObjectPoints):", len(listOfObjectPoints))
 baProblem = ba.BaProblem(listOfObjectPointCollections = listOfObjectPoints, listOfImageCollections = listOfImageCollections, problemSettings = ba.ProblemSettings())
 sfmio.writeRaysToDxf("rays_tie.dxf",baProblem,"tie",9)
 sfmio.writeRaysToDxf("rays_controll.dxf",baProblem,"controll",1)
+
+sfmio.writeBaProblem("California", baProblem)

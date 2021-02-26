@@ -2,6 +2,8 @@ import geometry
 import numpy as np
 import conversions as conv
 import ba_problem as ba
+import os as os
+import shutil as sh
 
 class Camera3DModel:
 
@@ -212,6 +214,7 @@ def importFromExternalOrientationTextfile(filename, delimiter, imageCollection, 
         image = geometry.Image()
         image.setPose(pose)
         image.setCamera(camera)
+        image.rotationSequence = rotationSequence
         imageCollection.addImage(image,id)
 
 def writeObjectPointsToFile(filename, objectPointCollection):
@@ -410,3 +413,52 @@ def writeRaysToDxf(filename, baProblem, pointType, colorId):
     dxfFile.write("ENDSEC\n")
     dxfFile.write("0\n")
     dxfFile.close()
+
+def writeBaProblem(projectName, baProblem):
+    workingDirectory = os.getcwd()
+    projectDirectory = os.path.join(workingDirectory, projectName)
+    if os.path.isdir(projectDirectory):
+        sh.rmtree(projectDirectory)
+    
+    try:
+        os.mkdir(projectDirectory)
+    except OSError:
+        print ("ERROR: Creation of the BA project directory %s failed" % projectDirectory)
+    else:
+        print ("Successfully created the BA project directory %s " % projectDirectory)
+
+    #writing camera:
+    for cameraName, camera in baProblem.mapOfCameras.items():
+        cameraFileName = cameraName + ".cam"
+        cameraFile = open(os.path.join(projectDirectory,cameraFileName),"w")
+        cameraFile.write("Name:\n")
+        cameraFile.write("%s\n" % camera.name)
+        cameraFile.write("Size:\n")
+        cameraFile.write("%d %d\n" % (camera.width, camera.height) )
+        cameraFile.write("Interior:\n")
+        cameraFile.write("%.4f 2.0\n" % -camera.cameraMatrix[0,0])
+        cameraFile.write("%.4f 2.0\n" % camera.cameraMatrix[0,2])
+        cameraFile.write("%.4f 2.0\n" % camera.cameraMatrix[1,2])
+        cameraFile.write("Radial distortion:\n")
+        cameraFile.write("0 3\n")
+        cameraFile.write("0 3\n")
+        cameraFile.write("0 3\n")
+        cameraFile.write("Tangential distortion:\n")
+        cameraFile.write("0 3\n")
+        cameraFile.write("0 3\n")
+        cameraFile.write("Y scaling:\n")
+        cameraFile.write("0 3\n")
+        cameraFile.write("Skewness of axes:\n")
+        cameraFile.write("0 3\n")
+        cameraFile.write("Additional_data:\n")
+        cameraFile.write("Pixel_size[mm]:\n")
+        cameraFile.write("%.7f\n" % camera.pixelSizeMilimeters)
+        cameraFile.write("Camera_serial_number:\n")
+        cameraFile.write("SN1234567890\n")
+        cameraFile.write("Lens_name:\n")
+        cameraFile.write("Unknown:\n")
+        cameraFile.write("Lens_nominal_focal_length[mm]:\n")
+        cameraFile.write("%d\n" % int(np.round(-camera.cameraMatrix[0,0] *camera.pixelSizeMilimeters)))
+        cameraFile.write("Lens_serial_number:\n")
+        cameraFile.write("SN9876543210\n")
+        cameraFile.close()

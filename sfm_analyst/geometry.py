@@ -88,7 +88,8 @@ class PinholeCamera:
              [self.cameraMatrix[0,0], self.cameraMatrix[0,0],self.cameraMatrix[0,0],self.cameraMatrix[0,0]],
               [1,1,1,1]])
 
-    def __init__(self,*, pixelSizeMilimeters, numberOfRows, numberOfColumns, principalDistanceMilimeters ):
+    def __init__(self,*,name, pixelSizeMilimeters, numberOfRows, numberOfColumns, principalDistanceMilimeters ):
+        self.name = name
         self.pixelSizeMilimeters = pixelSizeMilimeters
         principalDistancePixels = principalDistanceMilimeters / pixelSizeMilimeters
         self.height = numberOfRows
@@ -97,6 +98,12 @@ class PinholeCamera:
         self.range = Range(np.array([-0.5*self.width,-0.5*self.height]), np.array([0.5*self.width,0.5*self.height])) 
         self.__updateFrustum()
     
+    def setCalibrationFlags(self, flags):
+        if len(flags) == 4:
+            self.calibrationFlags = flags
+        else:
+            print("ERROR while setting calibraiton flags. Lenght of calibration flags is: ", len(flags), " while it should be 4.")
+
     def getViewingAnglesRadians(self): #does not take distortion into account
         return tuple((2.0* np.arctan(0.5*self.width/-self.cameraMatrix[0,0]), 2.0* np.arctan(0.5*self.height/-self.cameraMatrix[1,1])))
 
@@ -108,6 +115,8 @@ class PinholeCamera:
         scaledFrustum[0:3,:] = scale*scaledFrustum[0:3,:]
         return scaledFrustum
 
+    name = "unnamed_cmaera"
+    calibrationFlags = [1,1,1,1]
     pixelSizeMilimeters = 0.006
     cameraMatrix = np.matrix([[-3300.0,0.0,0.0],[0.0,-3300.0,0.0],[0.0,0.0,1.0]])
     distortion = np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
@@ -123,8 +132,9 @@ class Image:
 
     def setCamera(self, camera):
         self.camera = camera
-
-    camera = PinholeCamera(pixelSizeMilimeters = 0.006, numberOfRows = 6000, numberOfColumns = 4000, principalDistanceMilimeters = 20)
+   
+    rotationSequence = "xyz"
+    camera = PinholeCamera(name = "default_camera", pixelSizeMilimeters = 0.006, numberOfRows = 6000, numberOfColumns = 4000, principalDistanceMilimeters = 20)
     pose = Pose()
 
 
