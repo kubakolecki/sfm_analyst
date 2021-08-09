@@ -1,65 +1,53 @@
 import sfmio
+import xtrelio
 import geometry
 import rasterio
 import sgen
 import ba_problem as ba
 import numpy as np
 
-AR = np.array([[3, 5, -1, 23, 11, 18, 0, 1],
-         [-3, 19, 1, 5 , 11, 18, 4, -21],
-        [1, 1, 1, 1, 1, 1, 1, 1]])
-
-test1 = AR[0,:] < 10
-test2 = AR[0,:] > -10
-test3 = AR[1,:] < 10
-test4 = AR[1,:] > -10
-
-print(test1)
-print(test2)
-print(test3)
-print(test4)
-
-test = np.logical_and(np.logical_and(np.logical_and(test1, test2),test3),test4)
-print(test)
-trueidc = np.where(test)
-print(trueidc)
-
-for i in trueidc[0]:
-    print(i)
-
-
-flightMissionImages = geometry.ImageCollection()
+flightMissionImages = geometry.ImageCollection(collectionId = 0)
 missionCamera = geometry.PinholeCamera(name = "myCamera" , pixelSizeMilimeters=0.004, numberOfRows = 4000, numberOfColumns= 6000, principalDistanceMilimeters = 20.0)
-
-sfmio.importFromExternalOrientationTextfile("CaliforniaEO.txt",' ', flightMissionImages, "xyz", missionCamera )
-sfmio.writeImageCollectionToObj(flightMissionImages, "test", imageWidthInMeters = 10, axesLenghtInMeters = 6.25)
+baSettings = xtrelio.readBaSettings("baconfig.yaml")
+outputXtrelDirectoryName = "CaliforniaSmall"
+sfmio.importFromExternalOrientationTextfile("CaliforniaSmallEO.txt",' ',
+                                           flightMissionImages,
+                                           "xyz",
+                                           observedPosition = False,
+                                           observedOrientation = False,
+                                           camera = missionCamera )
+sfmio.writeImageCollectionToObj(flightMissionImages, "test", imageWidthInMeters = 12, axesLenghtInMeters = 7.0)
 
 #generating structure
 dsm = rasterio.open("D:/DANE/tutorials/rasterio/opentopography/output_be.tif", driver="GTiff")
 
 listOfImageCollections = []
-listOfObjectPoints = []
 listOfImageCollections.append(flightMissionImages)
 
-structGenConfigTie = sgen.StructGenConfig(cellSize = 50.0, pointsPerCell = 1, dispersion = 1.5, approach = "uniform")
-structGenConfigControll = sgen.StructGenConfig(cellSize = 85, pointsPerCell = 1, dispersion= 1.0, approach = "uniform", typeOfPoints= "controll")
+stdDevControllPoints = np.array([baSettings.noiseForControllPoints[1][0], baSettings.noiseForControllPoints[1][1], baSettings.noiseForControllPoints[1][2] ])
+
+structGenConfigTie = sgen.StructGenConfig(cellSize = 65, pointsPerCell = 2, dispersion = 1.5, approach = "uniform")
+structGenConfigControll = sgen.StructGenConfig(cellSize = 65, pointsPerCell = 1, dispersion= 1.0, standardDeviation = stdDevControllPoints, approach = "uniform", typeOfPoints= "controll")
+structGenConfigCheck = sgen.StructGenConfig(cellSize = 100, pointsPerCell = 1, dispersion= 1.0, approach = "uniform", typeOfPoints= "check")
 
 imageRange = sgen.generateProcessingRangeFromImages(rasterioDsm = dsm, listOfImageCollections = listOfImageCollections)
 
 objectPointsTie = sgen.generateUsingSurfaceModel(rasterioDsm = dsm,
                                givenRange = imageRange,
                                generationConfig = structGenConfigTie,
-                               listOfImageCollections = listOfImageCollections,
                                id = 0)
 
 objectPointsControll = sgen.generateUsingSurfaceModel(rasterioDsm = dsm,
                                givenRange = imageRange,
                                generationConfig = structGenConfigControll,
-                               listOfImageCollections = listOfImageCollections,
                                id = 1)
 
-listOfObjectPoints.append(objectPointsTie)
-listOfObjectPoints.append(objectPointsControll)
+objectPointsCheck = sgen.generateUsingSurfaceModel(rasterioDsm = dsm,
+                               givenRange = imageRange,
+                               generationConfig = structGenConfigCheck,
+                               id = 2)
+
+listOfObjectPoints = [objectPointsTie, objectPointsControll, objectPointsCheck]
 
 sfmio.writeObjectPointsToFile("objectPointsTie.txt", objectPointsTie)
 sfmio.writeObjectPointsToFile("objectPointsControll.txt", objectPointsControll)
@@ -69,8 +57,8 @@ sfmio.writeObjectPointsToFile("objectPointsControll.txt", objectPointsControll)
 print("len(listOfObjectPoints):", len(listOfObjectPoints))
 
 #building ba problem
-baProblem = ba.BaProblem(listOfObjectPointCollections = listOfObjectPoints, listOfImageCollections = listOfImageCollections, problemSettings = ba.ProblemSettings())
-sfmio.writeRaysToDxf("rays_tie.dxf",baProblem,"tie",9)
-sfmio.writeRaysToDxf("rays_controll.dxf",baProblem,"controll",1)
+baProblem = ba.BaProblem(listOfObjectPointCollections = listOfObjectPoints, listOfImageCollections = listOfImageCollections, baSettings = ba.BaSettings())
+sfmio.writeRaysToDxf("rays_tie.dxf",baProblem.objectPointsCollections, baProblem.imageCollections ,"tie",9)
+sfmio.writeRaysToDxf("rays_controll.dxf",baProblem.objectPointsCollections, baProblem.imageCollections ,"controll",1)
 
-sfmio.writeBaProblem("California", baProblem)
+xtrelio.writeBaProblem(outputXtrelDirectoryName, baProblem)

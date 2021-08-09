@@ -5,10 +5,11 @@ import copy
 
 class StructGenConfig:
 
-    def __init__(self, cellSize = 10.0, pointsPerCell = 5, dispersion = 4.0, approach = "uniform", typeOfPoints = "tie"):
+    def __init__(self, cellSize = 10.0, pointsPerCell = 5, dispersion = 4.0, standardDeviation = np.array([0.02, 0.02, 0.03]) , approach = "uniform", typeOfPoints = "tie"):
         self.cellSize = cellSize
         self.pointsPerCell = pointsPerCell
         self.dispersion = dispersion
+        self.standardDeviation = standardDeviation
 
         if (typeOfPoints == "tie" or typeOfPoints == "controll" or typeOfPoints == "check"):
             self.typeOfPoints = typeOfPoints
@@ -27,7 +28,8 @@ class StructGenConfig:
     cellSize = 10.0
     pointsPerCell = 5
     dispresion = 4.0
-    typeOfPoints = "tie"
+    standardDeviation = np.array([0.02, 0.02, 0.03])
+    typeOfPoints = "tie" #tie, controll, check
     approach = "uniform" #uniform or gausssian
 
 
@@ -77,7 +79,7 @@ def generateProcessingRangeFromImages(rasterioDsm, listOfImageCollections = []):
     return outputRange
 
 
-def generateUsingSurfaceModel(rasterioDsm, generationConfig = StructGenConfig(), givenRange = geometry.Range(), listOfImageCollections = [], id = 0):
+def generateUsingSurfaceModel(rasterioDsm, generationConfig = StructGenConfig(), givenRange = geometry.Range(),  id = 0):
 
     #generation of structure based on givenRange and dsm:
     #generating list of geometry.Range for the whole dsm range:
@@ -129,10 +131,14 @@ def generateUsingSurfaceModel(rasterioDsm, generationConfig = StructGenConfig(),
             if givenRange.hasInside(x , y) and dsmRange.hasInside(x,y):
                 sampledHeight = list(rasterioDsm.sample([(x,y)]))[0][0]
                 if sampledHeight != rasterioDsm.meta['nodata']:
-                    objectPointCollection.insertPoint(x, y, sampledHeight, generationConfig.typeOfPoints, pointPosition, pointPosition)
+                    objectPointCollection.insertPoint(x, y, sampledHeight,
+                                                      generationConfig.standardDeviation[0], generationConfig.standardDeviation[1], generationConfig.standardDeviation[2],
+                                                      generationConfig.typeOfPoints, pointPosition, pointPosition)
                     pointPosition = pointPosition + 1
                     numberOfAddedPoints = numberOfAddedPoints + 1
     
     objectPointCollection.removeLastNPoints(maxPossibleNumberOfPoints-numberOfAddedPoints)
     objectPointCollection.collectionId = id
     return objectPointCollection
+
+#def readFromTexfile(filename):

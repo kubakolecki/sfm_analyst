@@ -1,0 +1,1 @@
+D:\DANE\xtrel\xtrel.exe D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem\baProblem\config.yaml

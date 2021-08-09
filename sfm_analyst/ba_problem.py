@@ -1,16 +1,23 @@
 import geometry as geom
 import numpy as np
 
-class ProblemSettings:
-    estimatePrincipalDistance = False
-    estimatePrincipalPoint = False
-    estimateRaidalDistortion = False
-    estimateTangentialDistortion = False
-
+class BaSettings:
+    lossFunction = "NONE"
+    lossFunctionParameter = 1.5
+    noiseForImagePoints = 0.5
+    noiseForControllPoints = {} #[collectionId [s_x s_y s_z ]]
+    noiseForExternalOrientation = {} #[collectionId [s_x s_y s_z s_alpha s_beta s_gamma]]
+    computeCorrelations = 0
+    computeRedundancy = 0
+    reportFileName = "report.txt"
+    placeRaportInProjectDirecotry = True
+    reportDirectory = ""
+   
 class BaProblem:
-    def __init__(self,*, listOfObjectPointCollections, listOfImageCollections, problemSettings ):
+    def __init__(self,*, listOfObjectPointCollections, listOfImageCollections, baSettings ):
         self.imageCollections = listOfImageCollections
         self.objectPointsCollections =  listOfObjectPointCollections
+        self.baSettings = baSettings
         print("len(self.objectPointsCollections): ",len(self.objectPointsCollections))
         self.imagePoints.clear()
         
@@ -29,7 +36,6 @@ class BaProblem:
                     areWithinHeight = np.logical_and( imagePointsArray[1,:] < h, imagePointsArray[1,:] > -h)
                     areInImage = np.logical_and(areWithinWidth, areWithinHeight)
                     indicesOfPointsInImage = np.where(areInImage)[1]
-                    print("number of points from collection ",objectPointCollection.collectionId, " in image: ",idOfImageCollection, idOfImage," is: " , indicesOfPointsInImage.shape[0])
                     #creating image points
                     for i in indicesOfPointsInImage:
                         self.imagePoints.append(geom.ImagePoint(imagePointsArray[0,i],
@@ -39,18 +45,19 @@ class BaProblem:
                                                                 objectPointCollection.collectionId,
                                                                 objectPointCollection.ids[i]  ))
                         objectPointCollection.imagesIds[i].append((idOfImageCollection, idOfImage))
-        self.removeSingleRays()
+        self.__removeSingleRays()
+        self.__buildMapOfImagePointsPerImage()
 
 
 
-    def removeSingleRays(self):
+    def __removeSingleRays(self):
         print("number of image points before filtration: ", len(self.imagePoints) )
         validImagePoints = []
         for imagePoint in self.imagePoints:
             indexOfObjectPoint = self.objectPointsCollections[imagePoint.idOfObjectPointCollection].pointIdsToPositionMap[imagePoint.idOfObjectPoint] #.pointIdsToPositionMap[imagePoint.idOfObjectPoint]
             typeOfPoint = self.objectPointsCollections[imagePoint.idOfObjectPointCollection].types[indexOfObjectPoint]
             numberOfRays = len(self.objectPointsCollections[imagePoint.idOfObjectPointCollection].imagesIds[indexOfObjectPoint])
-            if typeOfPoint == "tie" and numberOfRays > 2:
+            if typeOfPoint == "tie" and numberOfRays > 1:
                 validImagePoints.append(imagePoint)
                 continue
             if typeOfPoint == "controll" and numberOfRays > 0:
@@ -61,9 +68,21 @@ class BaProblem:
                 continue
 
         print("number of image points after filtration: ", len(validImagePoints) )      
-        imagePoints = validImagePoints
+        self.imagePoints = validImagePoints
     
+
+    def __buildMapOfImagePointsPerImage(self):
+        for i in range(0, len(self.imageCollections)):
+            for imageId, image in self.imageCollections[i].images.items():
+                id = str(i) + "_" + imageId
+                self.imagePointsPerImage[id] = []
+        
+        for imagePoint in self.imagePoints:
+            self.imagePointsPerImage[imagePoint.getCombinedImageName()].append(imagePoint)
+
     imageCollections = []
     objectPointsCollections = []
     imagePoints = []
     mapOfCameras = {}
+    imagePointsPerImage = {}
+    baSettings = BaSettings()

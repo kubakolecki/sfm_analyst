@@ -1,0 +1,20 @@
+NumOfCameras: 1
+MathModel: SOFT
+ImageMesAcc: 0.500000
+HzAngleMesAcc: 10
+VAngleMesAcc: 10
+DistMesAcc: 0.00200
+LossFunction: NONE
+LossFunctionParameter: 1.5
+CamFixMasks:
+D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam: 1111
+ComputeCorrelations: 0
+ComputeRedundancy: 0
+GenerateCalibrationCertificate: 0
+FilenameImagePoints: 'D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\image_observations.txt'
+FilenameObjectPoints: 'D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\object_points.txt'
+FilenameGeodeticClotrollPoints: ''
+FilenameExternalOrientation: 'D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\eo.txt'
+FilenameGeodeticMeasurements: ''
+FilenameReport: 'D:/DANE/Visual_Studio/Python/sfm_analyst/sfm_analyst/ExampleSimulateBaProblem/baReports\report_4.txt'
+FilenameCalibrationCertificateData: ''

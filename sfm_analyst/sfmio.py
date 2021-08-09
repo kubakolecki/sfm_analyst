@@ -1,9 +1,6 @@
 import geometry
 import numpy as np
 import conversions as conv
-import ba_problem as ba
-import os as os
-import shutil as sh
 
 class Camera3DModel:
 
@@ -196,8 +193,10 @@ def writeImageCollectionToObj(imageCollection, filename,* , imageWidthInMeters, 
     dxfFile.close()
 
 
-def importFromExternalOrientationTextfile(filename, delimiter, imageCollection, rotationSequence, camera):
+def importFromExternalOrientationTextfile(filename, delimiter, imageCollection, rotationSequence, observedPosition, observedOrientation, camera):
     poses = np.loadtxt(filename, dtype =str, delimiter = delimiter, skiprows = 1)
+    imageCollection.observedPosition = observedPosition
+    imageCollection.observedOrientation = observedOrientation
     for row in range(0, poses.shape[0]):
         id = poses[row,0];
         translation = np.zeros((3,1))
@@ -217,12 +216,18 @@ def importFromExternalOrientationTextfile(filename, delimiter, imageCollection, 
         image.rotationSequence = rotationSequence
         imageCollection.addImage(image,id)
 
+
+
 def writeObjectPointsToFile(filename, objectPointCollection):
-    cols = objectPointCollection.coordinates.shape[1]
-    fileObj = open(filename,"w")    
-    for col in range(0,cols):
-        fileObj.write("%.5f %.5f %.5f\n" % (objectPointCollection.coordinates[0,col], objectPointCollection.coordinates[1,col], objectPointCollection.coordinates[2,col]))
-    fileObj.close()
+    typeToIdMap = {"tie" : 0, "controll" : 3, "check" : 4}
+    npoints = objectPointCollection.getNumberOfPoints()
+    file = open(filename,"w")    
+    for i in range(0,npoints):
+        file.write("%s " % objectPointCollection.getCombinedPointName(i) )
+        file.write("%.5f %.5f %.5f " % (objectPointCollection.coordinates[0,i], objectPointCollection.coordinates[1,i], objectPointCollection.coordinates[2,i]))
+        file.write("%d " % typeToIdMap[objectPointCollection.types[i]])
+        file.write("%.5f %.5f %.5f\n" % (objectPointCollection.standardDeviations[0,i], objectPointCollection.standardDeviations[1,i], objectPointCollection.standardDeviations[2,i]))
+    file.close()
 
 
 def writeSurfaceModelToObj(filename, rasterioDsm, givenRange):
@@ -362,7 +367,7 @@ def writeSurfaceModelToObj(filename, rasterioDsm, givenRange):
             normalVectorId = normalVectorId + 1
         fileObj.close()
 
-def writeRaysToDxf(filename, baProblem, pointType, colorId):
+def writeRaysToDxf(filename, objectPointsCollections, imageCollections, pointType, colorId):
     dxfFile = open(filename,"w")
     dxfFile.write("0\n")
     dxfFile.write("SECTION\n")
@@ -380,7 +385,7 @@ def writeRaysToDxf(filename, baProblem, pointType, colorId):
     dxfFile.write("ENTITIES\n")
     dxfFile.write("0\n")
 
-    for pointCollection in baProblem.objectPointsCollections:
+    for pointCollection in objectPointsCollections:
         for pointIdx in range(0, pointCollection.getNumberOfPoints()):
             if len(pointCollection.imagesIds[pointIdx]) < 2 and pointCollection.types[pointIdx] == "tie":
                 continue
@@ -388,9 +393,9 @@ def writeRaysToDxf(filename, baProblem, pointType, colorId):
                 continue
             if pointCollection.types[pointIdx] == pointType:
                 for (idOfImageCollection, idOfImage) in pointCollection.imagesIds[pointIdx]:
-                    x0 = baProblem.imageCollections[idOfImageCollection].images[idOfImage].pose.translation[0,0]
-                    y0 = baProblem.imageCollections[idOfImageCollection].images[idOfImage].pose.translation[1,0]
-                    z0 = baProblem.imageCollections[idOfImageCollection].images[idOfImage].pose.translation[2,0]
+                    x0 = imageCollections[idOfImageCollection].images[idOfImage].pose.translation[0,0]
+                    y0 = imageCollections[idOfImageCollection].images[idOfImage].pose.translation[1,0]
+                    z0 = imageCollections[idOfImageCollection].images[idOfImage].pose.translation[2,0]
                     dxfFile.write("LINE\n")
                     dxfFile.write("8\n")
                     dxfFile.write("0\n")
@@ -414,51 +419,3 @@ def writeRaysToDxf(filename, baProblem, pointType, colorId):
     dxfFile.write("0\n")
     dxfFile.close()
 
-def writeBaProblem(projectName, baProblem):
-    workingDirectory = os.getcwd()
-    projectDirectory = os.path.join(workingDirectory, projectName)
-    if os.path.isdir(projectDirectory):
-        sh.rmtree(projectDirectory)
-    
-    try:
-        os.mkdir(projectDirectory)
-    except OSError:
-        print ("ERROR: Creation of the BA project directory %s failed" % projectDirectory)
-    else:
-        print ("Successfully created the BA project directory %s " % projectDirectory)
-
-    #writing camera:
-    for cameraName, camera in baProblem.mapOfCameras.items():
-        cameraFileName = cameraName + ".cam"
-        cameraFile = open(os.path.join(projectDirectory,cameraFileName),"w")
-        cameraFile.write("Name:\n")
-        cameraFile.write("%s\n" % camera.name)
-        cameraFile.write("Size:\n")
-        cameraFile.write("%d %d\n" % (camera.width, camera.height) )
-        cameraFile.write("Interior:\n")
-        cameraFile.write("%.4f 2.0\n" % -camera.cameraMatrix[0,0])
-        cameraFile.write("%.4f 2.0\n" % camera.cameraMatrix[0,2])
-        cameraFile.write("%.4f 2.0\n" % camera.cameraMatrix[1,2])
-        cameraFile.write("Radial distortion:\n")
-        cameraFile.write("0 3\n")
-        cameraFile.write("0 3\n")
-        cameraFile.write("0 3\n")
-        cameraFile.write("Tangential distortion:\n")
-        cameraFile.write("0 3\n")
-        cameraFile.write("0 3\n")
-        cameraFile.write("Y scaling:\n")
-        cameraFile.write("0 3\n")
-        cameraFile.write("Skewness of axes:\n")
-        cameraFile.write("0 3\n")
-        cameraFile.write("Additional_data:\n")
-        cameraFile.write("Pixel_size[mm]:\n")
-        cameraFile.write("%.7f\n" % camera.pixelSizeMilimeters)
-        cameraFile.write("Camera_serial_number:\n")
-        cameraFile.write("SN1234567890\n")
-        cameraFile.write("Lens_name:\n")
-        cameraFile.write("Unknown:\n")
-        cameraFile.write("Lens_nominal_focal_length[mm]:\n")
-        cameraFile.write("%d\n" % int(np.round(-camera.cameraMatrix[0,0] *camera.pixelSizeMilimeters)))
-        cameraFile.write("Lens_serial_number:\n")
-        cameraFile.write("SN9876543210\n")
-        cameraFile.close()

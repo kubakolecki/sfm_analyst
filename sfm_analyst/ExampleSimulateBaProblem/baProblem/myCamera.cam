@@ -1,0 +1,30 @@
+Name:
+myCamera
+Size:
+6000 4000
+Interior:
+5000.0000 2.0
+0.0000 2.0
+0.0000 2.0
+Radial distortion:
+0 3
+0 3
+0 3
+Tangential distortion:
+0 3
+0 3
+Y scaling:
+0 3
+Skewness of axes:
+0 3
+Additional_data:
+Pixel_size[mm]:
+0.0040000
+Camera_serial_number:
+SN1234567890
+Lens_name:
+Unknown:
+Lens_nominal_focal_length[mm]:
+20
+Lens_serial_number:
+SN9876543210

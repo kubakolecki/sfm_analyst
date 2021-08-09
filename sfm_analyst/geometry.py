@@ -77,6 +77,8 @@ class Pose:
 
     translation = np.zeros((3,1))# x, y, z coordinates
     rotation = np.eye(3) # rotation matrix
+    stdDevTranslation =  np.array([0.01, 0.01, 0.01]) # std of x, y, z coordinates
+    stdDevRotation  =  np.array([0.00175, 0.00175, 0.00175]) # roations about x, y, z axes in radians
     T = np.eye(4)
 
 
@@ -140,9 +142,15 @@ class Image:
 
 class ImageCollection:
 
+    def __init__(self,*, collectionId):
+        self.id = collectionId
+
     def addImage(self, image, id):
         self.images[id] = image
-     
+    
+    id = 0
+    observedPosition = False
+    observedOrientation = False
     images = {}
 
 
@@ -155,14 +163,18 @@ class ObjectPointCollection:
     def reserve(self, size):    
         self.coordinates = np.zeros((4,size))
         self.coordinates[3,:] = np.ones((1,size))
+        self.standardDeviations = np.zeros((3,size)) 
         self.imagesIds = [[] for i in range(size)]
         self.types = ["tie" for i in range(size)]
         self.ids = [0 for i in range(size)]
 
-    def insertPoint(self, x, y, z, pointType, id, position):
+    def insertPoint(self, x, y, z, stdDevX, stdDevY, stdDevZ, pointType, id, position):
         self.coordinates[0, position] = x
         self.coordinates[1, position] = y
         self.coordinates[2, position] = z
+        self.standardDeviations[0, position] = stdDevX
+        self.standardDeviations[1, position] = stdDevY
+        self.standardDeviations[2, position] = stdDevZ
         self.ids[position] = id
         self.types[position] = pointType
         self.pointIdsToPositionMap[id] = position
@@ -178,15 +190,19 @@ class ObjectPointCollection:
     def getNumberOfPoints(self):
         return self.coordinates.shape[1]
 
+    def getCombinedPointName(self, id):
+        return str(self.collectionId) + "_" + str(self.ids[id])
+
     def clearImageIds(self):
         for imids in self.imagesIds:
             imids.clear()
 
     collectionId = 0
     coordinates = np.zeros((4,10))
+    standardDeviations = np.ones((3,10))
     ids = [0 for i in range(10)]
     types = ["tie" for i in range(10)]
-    imagesIds = [[] for i in range(10)]
+    imagesIds = [[] for i in range(10)] #list of tuples: (idOfImageCollection, idOfImage)
     pointIdsToPositionMap = {}
     
 
@@ -205,12 +221,21 @@ class ImagePoint:
         self.idOfImage = idOfImage
         self.idOfObjectPointCollection = idOfObjectPointCollection
         self.idOfObjectPoint = idOfObjectPoint
+    
+    def getCombinedPointName(self):
+        return str(self.idOfObjectPointCollection) + "_" + str(self.idOfObjectPoint)
+    
+    def getCombinedImageName(self):
+        return str(self.idOfImageCollection) + "_" + str(self.idOfImage)
+
     observation = Point2D()
     projection = Point2D()
     idOfImageCollection = 0
     idOfImage = 0
     idOfObjectPointCollection = 0
     idOfObjectPoint = 0
+    
+    
 
 
 def projectObjectPointCollectionToImage(image, objectPointCollection, idStart, idEnd ):
@@ -220,10 +245,11 @@ def projectObjectPointCollectionToImage(image, objectPointCollection, idStart, i
 
 def project(image, objectPoints):
     #calculating pose that is used for projection
-    translation = np.matmul(image.pose.rotation, -image.pose.translation)
-    pose = Pose(translation, image.pose.rotation)
+    #translation = np.matmul(image.pose.rotation, -image.pose.translation)
+    #pose = Pose(translation, image.pose.rotation)
+
     TI = np.array([[1,0,0,0],[0,1,0,0],[0,0,1,0]])
-    objectPointsInCameraFrame = np.matmul(TI,np.matmul(pose.T, objectPoints))
+    objectPointsInCameraFrame = np.matmul(TI,np.matmul(np.linalg.inv(image.pose.T), objectPoints))
     projectedImagePoints = np.matmul(image.camera.cameraMatrix,objectPointsInCameraFrame) #homogenous
     projectedImagePoints[0,:] =np.divide(projectedImagePoints[0,:],projectedImagePoints[2,:]) #in pixels
     projectedImagePoints[1,:] =np.divide(projectedImagePoints[1,:],projectedImagePoints[2,:]) #in pixels

@@ -1,0 +1,1740 @@
+Budle Adjustment Report
+
+
+********************************************************************************************************************
+******************************************************* SETTINGS ****************************************************
+*********************************************************************************************************************
+Applied Settings:
+Optimization model: 'SOFT' - correction to controll points was allowed, apriori errors from input file were applied for each point.
+Loss function: NONE
+Image measurement error: 0.5 [px]
+Hz angle measurement error: 1.5708e-05 [rad]
+V angle measurement error: 1.5708e-05 [rad]
+
+Calibration masks: 
+
+Camera: D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam Mask: 15
+which means:
+   internal orientation is fixed: true
+k1 and k2 dist. params are fixed: true
+k3 distortion parameter is fixed: true
+  tangential distortion is fixed: true
+
+*********************************************************************************************************************
+*********************************************** INPUT DATA STATISTICS ***********************************************
+*********************************************************************************************************************
+Number of images          :        35
+Number of camreas         :         1
+Number of controll points :        41
+Number of tie points      :        74
+Number of check points    :        15
+Number of image points    :      1017
+
+Cameras assignments and number of points:
+ image_name:                             camera_name:    #image_points
+         0_0 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               28
+         0_1 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               28
+        0_10 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               28
+       0_100 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               27
+       0_101 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               31
+       0_102 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               32
+       0_103 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               34
+       0_104 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               33
+       0_105 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               29
+       0_106 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               30
+       0_107 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               28
+       0_108 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               25
+       0_109 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               26
+        0_11 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               25
+       0_110 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               27
+       0_111 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               25
+       0_112 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               28
+        0_12 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               26
+        0_13 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               22
+         0_2 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               30
+       0_200 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               28
+       0_201 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               32
+       0_202 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               36
+       0_203 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               37
+       0_204 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               35
+       0_205 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               36
+       0_206 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               34
+       0_207 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               31
+         0_3 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               29
+         0_4 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               30
+         0_5 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               25
+         0_6 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               28
+         0_7 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               25
+         0_8 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               23
+         0_9 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam               26
+
+*********************************************************************************************************************
+***************************************************** SOLVER REPORT *************************************************
+*********************************************************************************************************************
+
+Solver report:
+
+Solver Summary (v 1.14.0-eigen-(3.3.7)-lapack-suitesparse-(5.4.0)-cxsparse-(2.3.0)-no_openmp-no_tbb)
+
+                                     Original                  Reduced
+Parameter blocks                          204                      200
+Parameters                                608                      600
+Residual blocks                          1058                     1058
+Residuals                                2157                     2157
+
+Minimizer                        TRUST_REGION
+
+Sparse linear algebra library    SUITE_SPARSE
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver          SPARSE_NORMAL_CHOLESKY   SPARSE_NORMAL_CHOLESKY
+Visibility clustering         CANONICAL_VIEWS          CANONICAL_VIEWS
+Threads                                     4                        1
+Linear solver ordering              AUTOMATIC                      200
+
+Cost:
+Initial                          1.042469e+03
+Final                            7.330557e+02
+Change                           3.094131e+02
+
+Minimizer iterations                        2
+Successful steps                            2
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.004249
+
+  Residual only evaluation           0.002684 (2)
+  Jacobian & residual evaluation     0.003634 (2)
+  Linear solver                      0.018559 (2)
+Minimizer                            0.026956
+
+Postprocessor                        0.000058
+Total                                0.031263
+
+Termination:                      CONVERGENCE (Parameter tolerance reached. Relative step_norm: 5.323055e-10 <= 1.000000e-08.)
+
+*********************************************************************************************************************
+***************************************************** ESTIMATES *****************************************************
+*********************************************************************************************************************
+
+Estimated variance of unit weight: 0.9465[-]
+Square root of  variance of unit weight (sigma0): 0.9729[-]
+
+Camera parameters (internal orientation and distortion) after estimation:
+
+Explanation:
+
+Camera parameters provide the relationship between points in the 3D camera frame (object points) and the pixel coordinates in the image
+In the idealized projection, where no distortion is present, the projection equation are as follows:
+x' = x0 - c*(X'/Z')
+y' = y0 - c*(Y'/Z')
+where:
+x' and y' are the measured image plane coordinates (the unit of which can be [px]) of the object point P(X',Y',Z') projected using the camera
+with principal distance c and principal point (x0, y0). X', Y', Z' provide the position of point P in the 3D camera frame with the following definition:
+For the horizontal, terrestrial image:
++X axis: towards left
++Y axis: upwards
++Z axis: backwards
+In the presence of distortion the polynomial correction coefficients [k1, k2, k3, p1, p2] are estimated. This coefficients provide the
+correction to the measured image coordinates, that should be distinguished from the case where the distortion coefficients provide the
+displacement of the ideal coordinates to their measured locations.
+The following observation equation is used for the estimation:
+x' = x0 - c*(X'/Z') + x(k1*r^2 + k2*r^4 + k3*r^6) + p1*(r^2 + 2*x^2) + 2*p2*x*y
+y' = y0 - c*(Y'/Z') + y(k1*r^2 + k2*r^4 + k3*r^6) + 2*p1*x*y + p2*(r^2 + 2*y^2)
+where: x = x'-x0, y = y'-y0
+and: r^2  = x^2 + y^2
+This results in the following formulation of the correction to the measured image coordinates:
+dx = - [x(k1*r^2 + k2*r^4 + k3*r^6) + p1*(r^2 + 2*x^2) + 2*p2*x*y]
+dy = - [y(k1*r^2 + k2*r^4 + k3*r^6) + 2*p1*x*y + p2*(r^2 + 2*y^2)]
+As a result:
+x' + dx = x0 - c*(X'/Z')
+y' + dy = y0 - c*(Y'/Z')
+
+A number of photogrammetric and computer vision software handles the distortion in a different way:
+once the object point is projected to the image to the P':[xp, yp] location (the 'ideal location'), the distortion parameters are used to
+shifts the P' point to the place where it occurs in real  the image
+This report provides the second set of distortion coefficients for each calibrated camera, that corresponds to the above
+mentioned case. The applied mathematical model can be found in OpenCV documentation: https://docs.opencv.org/3.4.6/d9/d0c/group__calib3d.html
+However this software does NOT use OpenCV to estimate for OpenCV distortion coefficients. The important feature of the OpenCV standard is the
+orientation of camera frame axes, which follows:
+For the horizontal, terrestrial image:
++X axis: towards left
++Y axis: downwards
++Z axis: looking forward, along the lens axis
+An object point P (X, Y, Z) projects to the image according to the equation (notice the difference in sign):
+x' = x0 + c*(X'/Z' + dx')
+y' = y0 + c*(Y'/Z' + dy')
+where: 
+xp = c*(X'/Z' + dx')
+yp = c*(Y'/Z' + dy')
+represent the fiducial position of the undistorted point location (unit: [px]), x0 and y0 are the principal point coordinates (dimension: [px]),
+dx' and dy' are the distortion corrections.
+The values of dx' and dy' function of the estimated distortion coefficients and the normalized point coordintaes xn and yn:
+xn = X'/Z'
+yn = Y'/Z'
+dx' = xn*(k1'*r^2 + k2'*r^4 + k3'*r^6) + 2*p1'*xn*yn + p2'*(r^2 + 2*xn^2)
+dy' = yn*(k1'*r^2 + k2'*r^4 + k3'*r^6) + p1'*(r^2 + 2*yn^2) + 2*p2'*xn*yn
+where r^2 = xn^2 + yn^2
+k1', k2', k3' are  radial distortion parameters,
+p1', p2' are tangential distortion parameters
+we use the "'" upper index to distinguish from the distortion model described beforehand
+As mentioned before this software does not use OpenCV to estimate for OpenCV distortion coefficients.
+Here the surface fitting approach is applied: we can define a grid of points and calculate the distortion corrections dx', dy' for
+each grid node. Having N grid nodes we can form 2*N linear equations for dx' and dy' and estimate distortion parameters
+using the least squares method.
+
+camera name: D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+parameters for pixel space: 
+                       parameter name:          value:        std.dev. std.dev./val[%]
+                 number of rows: [px]:            4000
+              number of columns: [px]:            6000
+          pixel size (phisical): [mm]:    0.0040000000
+          principal distance (ck)[px]:       5000.0000 this parameter was fixed
+             principal point (x0)[px]:          0.0000 this parameter was fixed
+             principal point (y0)[px]:          0.0000 this parameter was fixed
+        radial distortion (k1)[px^-2]:      0.0000e+00 this parameter was fixed
+        radial distortion (k2)[px^-4]:      0.0000e+00 this parameter was fixed
+        radial distortion (k3)[px^-6]:      0.0000e+00 this parameter was fixed
+    tangential distortion (p1)[px^-1]:      0.0000e+00 this parameter was fixed
+    tangential distortion (p2)[px^-1]:      0.0000e+00 this parameter was fixed
+
+parameters for metric space: 
+                       parameter name:          value:        std.dev. std.dev./val[%]
+                 number of rows: [px]:            4000
+              number of columns: [px]:            6000
+          pixel size (phisical): [mm]:    0.0040000000
+          principal distance (ck)[mm]:        20.00000 this parameter was fixed
+             principal point (x0)[mm]:         0.00000 this parameter was fixed
+             principal point (y0)[mm]:         0.00000 this parameter was fixed
+        radial distortion (k1)[mm^-2]:     0.00000e+00 this parameter was fixed
+        radial distortion (k2)[mm^-4]:     0.00000e+00 this parameter was fixed
+        radial distortion (k3)[mm^-6]:     0.00000e+00 this parameter was fixed
+    tangential distortion (p1)[mm^-1]:     0.00000e+00 this parameter was fixed
+    tangential distortion (p2)[mm^-1]:     0.00000e+00 this parameter was fixed
+
+parameters for normalized space: 
+                       parameter name:          value:        std.dev. std.dev./val[%]
+                 number of rows: [px]:            4000
+              number of columns: [px]:            6000
+          pixel size (phisical): [mm]:    0.0040000000
+           principal distance (ck)[-]:        1.000000 this parameter was fixed
+              principal point (x0)[-]:        0.000000 this parameter was fixed
+              principal point (y0)[-]:        0.000000 this parameter was fixed
+            radial distortion (k1)[-]:    0.000000e+00 this parameter was fixed
+            radial distortion (k2)[-]:    0.000000e+00 this parameter was fixed
+            radial distortion (k3)[-]:    0.000000e+00 this parameter was fixed
+        tangential distortion (p1)[-]:    0.000000e+00 this parameter was fixed
+        tangential distortion (p2)[-]:    0.000000e+00 this parameter was fixed
+
+Magnitudes of radial distortion corrections:
+                 y values[px]: 
+ x values[px]->                -3000      -2000      -1000          0       1000       2000       3000 
+                     2000        0.0        0.0        0.0        0.0        0.0        0.0        0.0 
+                     1334        0.0        0.0        0.0        0.0        0.0        0.0        0.0 
+                      668        0.0        0.0        0.0        0.0        0.0        0.0        0.0 
+                        2        0.0        0.0        0.0        0.0        0.0        0.0        0.0 
+                     -664        0.0        0.0        0.0        0.0        0.0        0.0        0.0 
+                    -1330        0.0        0.0        0.0        0.0        0.0        0.0        0.0 
+                    -1996        0.0        0.0        0.0        0.0        0.0        0.0        0.0 
+
+Magnitudes of tangential distortion corrections:
+                 y values[px]: 
+ x values[px]->                -3000      -2000      -1000          0       1000       2000       3000 
+                     2000        0.0        0.0        0.0        0.0        0.0        0.0        0.0 
+                     1334        0.0        0.0        0.0        0.0        0.0        0.0        0.0 
+                      668        0.0        0.0        0.0        0.0        0.0        0.0        0.0 
+                        2        0.0        0.0        0.0        0.0        0.0        0.0        0.0 
+                     -664        0.0        0.0        0.0        0.0        0.0        0.0        0.0 
+                    -1330        0.0        0.0        0.0        0.0        0.0        0.0        0.0 
+                    -1996        0.0        0.0        0.0        0.0        0.0        0.0        0.0 
+
+Distortion coefficients for the reveresed distortion model (OpenCV):
+k1' :        0.000000000 [-]
+k2' :        0.000000000 [-]
+k3' :       -0.000000000 [-]
+p1' :       -0.000000000 [-]
+p2' :       -0.000000000 [-]
+surface fitting quality: 0.00000e+00 [px]
+
+Camera matrix (OpenCV convention):
+  |     5000.000        0.000     2999.500 |
+K=|        0.000     5000.000     1999.500 |
+  |        0.000        0.000        1.000 |
+
+Projection to image plane: 10 X 10 grid of points - to compare several variants of calibration.
+All external orientation parameters are set to zero.
+x[px]:
+-2700.00 -2160.00 -1620.00 -1080.00 -540.00 0.00 540.00 1080.00 1620.00 2160.00 2700.00
+-2700.00 -2160.00 -1620.00 -1080.00 -540.00 0.00 540.00 1080.00 1620.00 2160.00 2700.00
+-2700.00 -2160.00 -1620.00 -1080.00 -540.00 0.00 540.00 1080.00 1620.00 2160.00 2700.00
+-2700.00 -2160.00 -1620.00 -1080.00 -540.00 0.00 540.00 1080.00 1620.00 2160.00 2700.00
+-2700.00 -2160.00 -1620.00 -1080.00 -540.00 0.00 540.00 1080.00 1620.00 2160.00 2700.00
+-2700.00 -2160.00 -1620.00 -1080.00 -540.00 0.00 540.00 1080.00 1620.00 2160.00 2700.00
+-2700.00 -2160.00 -1620.00 -1080.00 -540.00 0.00 540.00 1080.00 1620.00 2160.00 2700.00
+-2700.00 -2160.00 -1620.00 -1080.00 -540.00 0.00 540.00 1080.00 1620.00 2160.00 2700.00
+-2700.00 -2160.00 -1620.00 -1080.00 -540.00 0.00 540.00 1080.00 1620.00 2160.00 2700.00
+-2700.00 -2160.00 -1620.00 -1080.00 -540.00 0.00 540.00 1080.00 1620.00 2160.00 2700.00
+-2700.00 -2160.00 -1620.00 -1080.00 -540.00 0.00 540.00 1080.00 1620.00 2160.00 2700.00
+
+y[px]:
+-1800.00 -1800.00 -1800.00 -1800.00 -1800.00 -1800.00 -1800.00 -1800.00 -1800.00 -1800.00 -1800.00
+-1440.00 -1440.00 -1440.00 -1440.00 -1440.00 -1440.00 -1440.00 -1440.00 -1440.00 -1440.00 -1440.00
+-1080.00 -1080.00 -1080.00 -1080.00 -1080.00 -1080.00 -1080.00 -1080.00 -1080.00 -1080.00 -1080.00
+-720.00 -720.00 -720.00 -720.00 -720.00 -720.00 -720.00 -720.00 -720.00 -720.00 -720.00
+-360.00 -360.00 -360.00 -360.00 -360.00 -360.00 -360.00 -360.00 -360.00 -360.00 -360.00
+0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+360.00 360.00 360.00 360.00 360.00 360.00 360.00 360.00 360.00 360.00 360.00
+720.00 720.00 720.00 720.00 720.00 720.00 720.00 720.00 720.00 720.00 720.00
+1080.00 1080.00 1080.00 1080.00 1080.00 1080.00 1080.00 1080.00 1080.00 1080.00 1080.00
+1440.00 1440.00 1440.00 1440.00 1440.00 1440.00 1440.00 1440.00 1440.00 1440.00 1440.00
+1800.00 1800.00 1800.00 1800.00 1800.00 1800.00 1800.00 1800.00 1800.00 1800.00 1800.00
+
+Estimated external orientation parameters of images:
+Explanation:
+The projection of object point to the image plane was defined by the following equation (see the camera calibration section):
+x' + dx' = x0 - c*(X'/Z')
+y' + dy' = y0 - c*(Y'/Z')
+Here object point 3D coordinates: X', Y', Z' are provided in the camera 3D reference frame
+External orientation parameters give the relation between camera reference frame and external reference frame
+The relationship between object point coordinates in the camera frame and object point coordinates in the external frame
+are given by the following equations:
+X = r11*(X-X0) + r21*(Y-Y0) + r31*(Z-Z0)
+Y = r12*(X-X0) + r23*(Y-Y0) + r32*(Z-Z0)
+Z = r13*(X-X0) + r23*(Y-Y0) + r33*(Z-Z0)
+where X0, Y0, Z0 are the coordinates of the image projection center
+rij are the entries of the 3 X 3 rotation matrix R
+The rotation matrix acts as follows: having the 3 element vertical vector v, coordinates of which are expressed in the
+camera frame, the transformation V = R*v produces 3 element vector V that coordinates are expressed in the external reference frame
+Rotation matrix can be seen as a composition of three 3-element vertical vectors i, j, k: R = [i j k], where each of i, j, k vector
+is the unit vector parallel to the respective x, y, z axis of the camera frame that coordinates are provided in the external frame (direction cosine interpretation)
+With the aim of estimation, the rotation matrix is parametrized in various ways.
+The following parametrizations are used by this software:
+1. Euler angles omega - phi - kappa:
+    |   1       0             0     |   |  cos(phi)   0   sin(phi) |   | cos(kappa)   -sin(kappa)    0 |
+R = |   0   cos(omega)  -sin(omega) | * |      0      1       0    | * | sin(kappa)    cos(kappa)    0 |
+    |   0   sin(omega)   cos(omega) |   | -sin(phi)   0   cos(phi) |   |     0             0         1 |
+2. Euler angles alpha - nu - kappa:
+    | cos(alpha)   -sin(alpha)    0 |   |   1       0        0     |   | cos(kappa)   -sin(kappa)    0 |
+R = | sin(alpha)    cos(alpha)    0 | * |   0   cos(nu)   -sin(nu) | * | sin(kappa)    cos(kappa)    0 |
+    |     0             0         1 |   |   0   sin(nu)    cos(nu) |   |     0             0         1 |
+3. Unit quaternion:
+    | a^2+b^2-c^2-d^2   2*(b*c-a*d)      2*(b*d+a*c)   |
+R = | 2*(b*c+a*d)    a^2-b^2+c^2-d^2     2*(c*d-a*b)   |
+    | 2*(b*d+a*c)       2*(c*d-a*b)    a^2-b^2-c^2+d^2 |
+where q = a + i*b + j*c + k*d
+where i*b, j*c, k*d are the imaginary components
+
+Coordinates:
+   lp        id         X0         Y0         Z0    std.dev.X0    std.dev.Y0    std.dev.Z0
+    1       0_0 673375.99929 3936978.99872  209.99507       0.04850       0.03453       0.01179
+    2       0_1 673406.06356 3936979.02013  209.98543       0.05647       0.03874       0.01210
+    3      0_10 673676.01285 3936979.02757  209.99844       0.03523       0.02753       0.01324
+    4     0_100 673376.05718 3937029.04335  210.00196       0.06473       0.04223       0.01402
+    5     0_101 673405.99357 3937029.04841  210.02198       0.04716       0.03956       0.01157
+    6     0_102 673435.98709 3937029.00800  210.01011       0.05167       0.04106       0.01222
+    7     0_103 673466.01416 3937029.00776  210.01608       0.04377       0.03517       0.01114
+    8     0_104 673495.93842 3937029.02527  210.01886       0.04002       0.03360       0.01049
+    9     0_105 673525.95539 3937029.04238  210.01656       0.04527       0.03398       0.01080
+   10     0_106 673555.97538 3937029.02768  210.00629       0.05025       0.03373       0.01106
+   11     0_107 673586.00743 3937029.01674  210.04487       0.04963       0.03288       0.01264
+   12     0_108 673616.02729 3937029.02651  210.00000       0.04805       0.03437       0.01398
+   13     0_109 673645.99953 3937029.06571  210.02836       0.04038       0.04344       0.01551
+   14      0_11 673705.99044 3936979.05137  210.00787       0.03876       0.02828       0.01498
+   15     0_110 673676.02361 3937029.03143  210.00732       0.03639       0.03913       0.01370
+   16     0_111 673705.99446 3937028.99633  210.00637       0.03821       0.04544       0.01451
+   17     0_112 673736.03274 3937028.93078  209.96005       0.03812       0.05007       0.01650
+   18      0_12 673735.99769 3936979.01796  209.98044       0.03485       0.03559       0.01893
+   19      0_13 673765.94990 3936979.00065  209.98140       0.04630       0.04089       0.02219
+   20       0_2 673435.97232 3936979.00177  209.99030       0.04510       0.03584       0.01115
+   21     0_200 673376.15535 3937079.04075  224.98377       0.07158       0.04962       0.01449
+   22     0_201 673405.89463 3937079.03240  224.98786       0.05570       0.04591       0.01392
+   23     0_202 673435.96809 3937079.06067  224.99654       0.04753       0.04116       0.01207
+   24     0_203 673465.97742 3937079.02982  225.01333       0.04465       0.03872       0.01187
+   25     0_204 673496.00679 3937079.03277  225.00969       0.05141       0.04079       0.01165
+   26     0_205 673526.02779 3937079.03744  225.01441       0.04793       0.04012       0.01134
+   27     0_206 673555.91718 3937079.04146  225.02369       0.05397       0.04289       0.01223
+   28     0_207 673585.92793 3937079.07399  224.99177       0.05256       0.04760       0.01195
+   29       0_3 673465.92231 3936978.99318  210.00385       0.04818       0.03695       0.01180
+   30       0_4 673495.93703 3936978.97047  210.00118       0.04697       0.03788       0.01224
+   31       0_5 673526.00988 3936978.94286  210.00159       0.06389       0.04158       0.01310
+   32       0_6 673555.95548 3936978.99740  210.00776       0.05069       0.03663       0.01277
+   33       0_7 673586.00397 3936979.04335  210.01626       0.04870       0.03604       0.01479
+   34       0_8 673616.02196 3936979.03285  209.99849       0.04285       0.03148       0.01328
+   35       0_9 673646.00477 3936979.01394  209.99689       0.03920       0.03081       0.01265
+
+Rotation:
+   lp        id    parametrization     a1[deg]      a2[deg]      a3[deg]   std.dev.a1[deg]   std.dev.a2[deg]   std.dev.a3[deg]     std.dev.a1["]     std.dev.a2["]     std.dev.a3["] 
+    1       0_0           om-fi-ka    -0.00104     -0.00093     92.50073           0.00890           0.01335           0.00327              32.0              48.0              11.8 
+    2       0_1           om-fi-ka    -0.00507      0.01870     92.50028           0.01010           0.01579           0.00322              36.4              56.9              11.6 
+    3      0_10           om-fi-ka    -0.00763      0.00373     92.49439           0.00812           0.01090           0.00359              29.2              39.2              12.9 
+    4     0_100           om-fi-ka    -0.01083      0.01722    -91.40161           0.01107           0.01809           0.00344              39.8              65.1              12.4 
+    5     0_101           om-fi-ka    -0.01189     -0.00158    -91.39817           0.01043           0.01304           0.00291              37.5              46.9              10.5 
+    6     0_102           om-fi-ka    -0.00249     -0.00177    -91.40120           0.01099           0.01424           0.00302              39.6              51.3              10.9 
+    7     0_103           om-fi-ka    -0.00322      0.00333    -91.39904           0.00929           0.01210           0.00277              33.4              43.6              10.0 
+    8     0_104           om-fi-ka    -0.00782     -0.01801    -91.40502           0.00875           0.01106           0.00271              31.5              39.8               9.8 
+    9     0_105           om-fi-ka    -0.01073     -0.01451    -91.40212           0.00879           0.01267           0.00283              31.7              45.6              10.2 
+   10     0_106           om-fi-ka    -0.00776     -0.00594    -91.40369           0.00888           0.01406           0.00284              32.0              50.6              10.2 
+   11     0_107           om-fi-ka    -0.00561      0.00375    -91.40332           0.00865           0.01410           0.00292              31.2              50.8              10.5 
+   12     0_108           om-fi-ka    -0.00774      0.00972    -91.40500           0.00923           0.01395           0.00335              33.2              50.2              12.1 
+   13     0_109           om-fi-ka    -0.01752      0.00117    -91.40119           0.01231           0.01172           0.00367              44.3              42.2              13.2 
+   14      0_11           om-fi-ka    -0.01553     -0.00297     92.50101           0.00840           0.01244           0.00421              30.2              44.8              15.1 
+   15     0_110           om-fi-ka    -0.00931      0.00674    -91.40148           0.01113           0.01074           0.00362              40.1              38.7              13.0 
+   16     0_111           om-fi-ka    -0.00068      0.00047    -91.39638           0.01301           0.01162           0.00432              46.8              41.8              15.6 
+   17     0_112           om-fi-ka     0.01941      0.01008    -91.39605           0.01432           0.01154           0.00457              51.6              41.5              16.5 
+   18      0_12           om-fi-ka    -0.00531      0.00012     92.50333           0.01077           0.01117           0.00473              38.8              40.2              17.0 
+   19      0_13           om-fi-ka     0.00206     -0.01463     92.50635           0.01260           0.01470           0.00597              45.4              52.9              21.5 
+   20       0_2           om-fi-ka     0.00224     -0.00583     92.49678           0.00925           0.01253           0.00309              33.3              45.1              11.1 
+   21     0_200           om-fi-ka    -0.01133      0.03872     84.30029           0.01227           0.01850           0.00366              44.2              66.6              13.2 
+   22     0_201           om-fi-ka    -0.00815     -0.02800     84.29984           0.01138           0.01431           0.00326              41.0              51.5              11.7 
+   23     0_202           om-fi-ka    -0.01662     -0.00943     84.30172           0.01025           0.01216           0.00295              36.9              43.8              10.6 
+   24     0_203           om-fi-ka    -0.00785     -0.00793     84.29509           0.00965           0.01139           0.00278              34.7              41.0              10.0 
+   25     0_204           om-fi-ka    -0.00908     -0.00076     84.29741           0.01010           0.01330           0.00298              36.4              47.9              10.7 
+   26     0_205           om-fi-ka    -0.00930      0.00758     84.29925           0.00999           0.01235           0.00278              35.9              44.5              10.0 
+   27     0_206           om-fi-ka    -0.01179     -0.02281     84.30126           0.01076           0.01388           0.00299              38.7              50.0              10.8 
+   28     0_207           om-fi-ka    -0.01982     -0.01585     84.30349           0.01198           0.01359           0.00312              43.1              48.9              11.2 
+   29       0_3           om-fi-ka     0.00261     -0.02046     92.49749           0.00966           0.01338           0.00309              34.8              48.2              11.1 
+   30       0_4           om-fi-ka     0.00679     -0.01835     92.49876           0.01000           0.01297           0.00315              36.0              46.7              11.3 
+   31       0_5           om-fi-ka     0.01444      0.00438     92.49826           0.01102           0.01806           0.00347              39.7              65.0              12.5 
+   32       0_6           om-fi-ka     0.00061     -0.01086     92.50046           0.00982           0.01429           0.00323              35.4              51.5              11.6 
+   33       0_7           om-fi-ka    -0.01320      0.00119     92.49668           0.00974           0.01397           0.00336              35.1              50.3              12.1 
+   34       0_8           om-fi-ka    -0.00920      0.00901     92.49777           0.00869           0.01275           0.00353              31.3              45.9              12.7 
+   35       0_9           om-fi-ka    -0.00558      0.00303     92.50169           0.00878           0.01183           0.00360              31.6              42.6              13.0 
+
+External orientation, list:
+0_0 673375.99929 3936978.99872 209.99507 -0.001040 -0.000927 92.500734
+0_1 673406.06356 3936979.02013 209.98543 -0.005071 0.018701 92.500283
+0_10 673676.01285 3936979.02757 209.99844 -0.007627 0.003733 92.494393
+0_100 673376.05718 3937029.04335 210.00196 -0.010830 0.017215 -91.401612
+0_101 673405.99357 3937029.04841 210.02198 -0.011890 -0.001579 -91.398167
+0_102 673435.98709 3937029.00800 210.01011 -0.002491 -0.001770 -91.401201
+0_103 673466.01416 3937029.00776 210.01608 -0.003218 0.003332 -91.399042
+0_104 673495.93842 3937029.02527 210.01886 -0.007818 -0.018008 -91.405020
+0_105 673525.95539 3937029.04238 210.01656 -0.010730 -0.014508 -91.402123
+0_106 673555.97538 3937029.02768 210.00629 -0.007758 -0.005938 -91.403693
+0_107 673586.00743 3937029.01674 210.04487 -0.005609 0.003748 -91.403319
+0_108 673616.02729 3937029.02651 210.00000 -0.007740 0.009717 -91.405000
+0_109 673645.99953 3937029.06571 210.02836 -0.017524 0.001174 -91.401186
+0_11 673705.99044 3936979.05137 210.00787 -0.015532 -0.002972 92.501012
+0_110 673676.02361 3937029.03143 210.00732 -0.009313 0.006736 -91.401484
+0_111 673705.99446 3937028.99633 210.00637 -0.000681 0.000466 -91.396378
+0_112 673736.03274 3937028.93078 209.96005 0.019411 0.010083 -91.396047
+0_12 673735.99769 3936979.01796 209.98044 -0.005306 0.000124 92.503326
+0_13 673765.94990 3936979.00065 209.98140 0.002059 -0.014630 92.506355
+0_2 673435.97232 3936979.00177 209.99030 0.002242 -0.005834 92.496777
+0_200 673376.15535 3937079.04075 224.98377 -0.011333 0.038721 84.300291
+0_201 673405.89463 3937079.03240 224.98786 -0.008145 -0.028001 84.299836
+0_202 673435.96809 3937079.06067 224.99654 -0.016617 -0.009427 84.301720
+0_203 673465.97742 3937079.02982 225.01333 -0.007850 -0.007928 84.295094
+0_204 673496.00679 3937079.03277 225.00969 -0.009078 -0.000756 84.297415
+0_205 673526.02779 3937079.03744 225.01441 -0.009303 0.007576 84.299253
+0_206 673555.91718 3937079.04146 225.02369 -0.011795 -0.022809 84.301257
+0_207 673585.92793 3937079.07399 224.99177 -0.019824 -0.015848 84.303487
+0_3 673465.92231 3936978.99318 210.00385 0.002613 -0.020456 92.497494
+0_4 673495.93703 3936978.97047 210.00118 0.006791 -0.018351 92.498756
+0_5 673526.00988 3936978.94286 210.00159 0.014438 0.004384 92.498258
+0_6 673555.95548 3936978.99740 210.00776 0.000610 -0.010858 92.500461
+0_7 673586.00397 3936979.04335 210.01626 -0.013198 0.001192 92.496678
+0_8 673616.02196 3936979.03285 209.99849 -0.009205 0.009013 92.497769
+0_9 673646.00477 3936979.01394 209.99689 -0.005581 0.003034 92.501687
+
+Estimated coordinates of object points:
+Types: 0 -tie point, 3 - controll point, 4 - check point, 9 - geodetic controll
+    Name     Type   #Rays               X               Y               Z       Std.Dev.X       Std.Dev.Y       Std.Dev.Z
+    0_10        0       2    673630.68571   3936875.82634        38.92960         0.02985         0.09150         0.15113
+    0_11        0       4    673601.09264   3936871.68212        27.19735         0.01136         0.03504         0.05735
+    0_12        0       4    673688.28979   3936900.11093        58.21699         0.01020         0.02395         0.04314
+    0_14        0       3    673762.48448   3936915.45759        69.96573         0.01628         0.02831         0.05712
+    0_15        0       2    673789.12513   3936908.11584        71.65226         0.03555         0.06123         0.11638
+    0_18        0       2    673323.41940   3936929.00242        13.49437         0.03540         0.04711         0.12344
+     0_2        0       3    673365.63441   3936861.44486        14.37001         0.02406         0.06097         0.10006
+    0_20        0       4    673351.51690   3936938.95541        13.38345         0.01772         0.02506         0.07085
+    0_21        0      10    673374.69209   3936965.31457        13.76245         0.00894         0.01161         0.02962
+    0_22        0      11    673445.57818   3936939.19062        14.28163         0.00705         0.01081         0.02564
+    0_23        0      16    673461.72808   3936966.62107        14.30005         0.00606         0.00834         0.01993
+    0_24        0      15    673521.33134   3936970.25883        15.19270         0.00619         0.00811         0.02052
+    0_25        0      10    673526.18438   3936926.94517        15.18850         0.00764         0.01289         0.02861
+    0_26        0      10    673568.12035   3936926.47491        21.91243         0.00776         0.01283         0.02780
+    0_27        0       9    673575.35293   3936919.06468        24.83440         0.00795         0.01436         0.02953
+    0_28        0       8    673661.58618   3936962.05959        47.05790         0.00738         0.00964         0.02498
+    0_29        0       4    673660.53165   3936923.58988        50.30424         0.00977         0.01749         0.04196
+     0_3        0       3    673367.10257   3936899.70952        13.59339         0.02260         0.04074         0.09647
+    0_30        0       7    673719.58101   3936953.74252        60.10328         0.00823         0.01102         0.02545
+    0_31        0       8    673699.29607   3936981.76895        48.29115         0.00736         0.00816         0.02472
+    0_32        0       3    673778.71372   3936957.01293        61.59592         0.01638         0.01716         0.05224
+    0_33        0       7    673734.32610   3936964.91695        58.93525         0.00881         0.00981         0.02543
+    0_38        0      10    673375.89029   3936985.93613        13.84948         0.00870         0.00946         0.02844
+    0_39        0      10    673376.98513   3937018.35491        13.89602         0.00850         0.00743         0.02745
+    0_40        0      15    673424.69648   3937030.29389        14.34112         0.00599         0.00606         0.01907
+    0_41        0      16    673445.82436   3937013.34422        14.32047         0.00577         0.00608         0.01810
+    0_42        0      18    673479.68433   3937020.17009        14.55547         0.00551         0.00565         0.01649
+    0_43        0      16    673501.14883   3936984.56397        14.95699         0.00593         0.00716         0.01904
+    0_44        0      13    673583.65823   3937016.41342        15.79203         0.00628         0.00629         0.02131
+    0_45        0      13    673596.56000   3937010.31156        16.93199         0.00649         0.00638         0.02138
+    0_46        0      11    673636.33394   3937002.27181        31.18771         0.00653         0.00663         0.02051
+    0_47        0       9    673629.83353   3936988.27000        29.67237         0.00711         0.00775         0.02588
+    0_48        0       8    673687.97274   3937012.94145        32.98843         0.00720         0.00757         0.02821
+    0_49        0       9    673715.59883   3937033.45001        23.81107         0.00743         0.00862         0.02708
+     0_5        0       5    673441.27812   3936899.84257        17.45172         0.01005         0.02042         0.04400
+    0_50        0       5    673753.02737   3937021.33242        20.11216         0.01118         0.01101         0.05059
+    0_51        0       5    673755.41917   3937021.23943        19.54157         0.01158         0.01104         0.05100
+    0_53        0       3    673799.67036   3937041.03028        10.21720         0.02694         0.02320         0.08892
+    0_55        0       6    673331.77413   3937092.93484        14.41023         0.01541         0.01637         0.04327
+    0_56        0      12    673387.37786   3937062.26184         8.76175         0.00779         0.00797         0.02530
+    0_57        0       8    673400.20348   3937101.78645        14.22234         0.00890         0.01191         0.03587
+    0_58        0      15    673430.20700   3937070.70433         8.69438         0.00608         0.00738         0.02044
+    0_59        0      15    673434.34751   3937073.72015         9.82673         0.00604         0.00752         0.02027
+     0_6        0       5    673524.48450   3936893.64386        15.33813         0.01054         0.02185         0.04532
+    0_60        0      17    673512.19424   3937066.02754        14.73430         0.00559         0.00640         0.01690
+    0_61        0      15    673488.69867   3937049.02842        14.84392         0.00587         0.00629         0.01883
+    0_62        0       9    673567.91800   3937106.22783        13.40793         0.00791         0.01133         0.03044
+    0_63        0      16    673540.34602   3937088.04367        14.10424         0.00581         0.00788         0.01846
+    0_64        0      13    673604.90919   3937057.78985        15.71368         0.00629         0.00737         0.02056
+    0_65        0      12    673636.45782   3937091.92798        15.17652         0.00673         0.01048         0.02286
+    0_66        0      11    673666.19613   3937083.75634        15.97714         0.00690         0.01088         0.02395
+    0_67        0      10    673673.60146   3937055.07898        16.30679         0.00698         0.00974         0.02718
+    0_68        0       3    673790.97441   3937078.70132        17.45584         0.02381         0.03786         0.08602
+    0_69        0       3    673787.14029   3937058.11072        15.74892         0.02182         0.02910         0.08448
+     0_7        0       5    673503.63236   3936866.70877        15.47681         0.01111         0.02853         0.04856
+    0_70        0       3    673802.16296   3937060.75655        14.86796         0.02804         0.03071         0.08732
+    0_74        0       3    673388.90275   3937175.20105        18.15584         0.01663         0.05276         0.10949
+    0_75        0       6    673378.01868   3937132.72240        14.78248         0.01183         0.02141         0.04976
+    0_76        0      10    673468.06699   3937114.92815        14.66185         0.00720         0.01102         0.02715
+    0_77        0      10    673426.50421   3937138.02073        14.69445         0.00774         0.01408         0.02893
+    0_78        0      11    673519.60029   3937142.38525        15.40528         0.00714         0.01278         0.02539
+    0_79        0      10    673530.81711   3937136.46799        12.17682         0.00741         0.01369         0.02903
+    0_80        0       8    673591.72510   3937145.96456         9.31089         0.00878         0.01829         0.03540
+    0_81        0       4    673564.30008   3937156.00971        15.77988         0.01361         0.02775         0.06882
+    0_82        0       8    673612.24122   3937119.56599        14.43755         0.00838         0.01331         0.02938
+    0_84        0       4    673704.95020   3937140.36974        16.72182         0.01215         0.03748         0.06182
+    0_86        0       2    673774.45671   3937121.60019        17.23991         0.05344         0.09053         0.18698
+    0_87        0       3    673750.76137   3937130.53347        16.69142         0.02541         0.05149         0.09559
+     0_9        0       5    673569.52261   3936876.84173        17.22611         0.01118         0.02601         0.04665
+    0_90        0       3    673374.03001   3937192.97357        18.25969         0.02261         0.06365         0.11321
+    0_91        0       2    673352.39664   3937204.99618        19.29268         0.04516         0.13632         0.22168
+    0_93        0       2    673491.96948   3937205.30184        17.46385         0.05305         0.13199         0.21643
+    0_95        0       4    673576.19538   3937180.10956        16.51474         0.01637         0.03604         0.07090
+    0_96        0       4    673565.59954   3937189.48629        16.71302         0.01426         0.03912         0.07086
+     1_0        3       1    673315.55603   3936860.07034        13.63736         0.00901         0.00921         0.01132
+     1_1        3       3    673383.64865   3936889.53262        13.90344         0.00777         0.00809         0.01103
+    1_10        3       9    673363.61911   3936968.59563        13.53568         0.00625         0.00643         0.01058
+    1_11        3      16    673431.33884   3936961.95869        14.10952         0.00520         0.00579         0.00989
+    1_12        3      13    673527.71490   3936954.85898        15.32022         0.00558         0.00599         0.01023
+    1_13        3       5    673589.66113   3936919.34780        30.36268         0.00698         0.00716         0.01081
+    1_14        3       8    673660.25640   3936974.25719        46.09511         0.00598         0.00600         0.01046
+    1_15        3       7    673720.27204   3936976.69491        53.00649         0.00628         0.00631         0.01062
+    1_16        3       6    673736.25661   3936942.25819        62.85306         0.00696         0.00689         0.01045
+    1_17        3       1    673800.64897   3936955.26905        56.77899         0.00885         0.00858         0.01154
+    1_18        3       4    673325.32222   3937006.70977        13.49937         0.00750         0.00746         0.01110
+    1_19        3       7    673349.86825   3936988.50656        13.65145         0.00661         0.00667         0.01080
+     1_2        3       3    673420.23415   3936870.20724        27.35974         0.00790         0.00836         0.01081
+    1_20        3      14    673417.04731   3937018.00046        14.15120         0.00523         0.00532         0.01010
+    1_21        3      17    673513.29478   3937043.16604        14.92704         0.00488         0.00498         0.00964
+    1_22        3      13    673587.32106   3937029.09511        16.02573         0.00529         0.00536         0.01026
+    1_23        3      12    673619.46536   3937017.38861        19.23721         0.00541         0.00546         0.01034
+    1_24        3       8    673720.75636   3937043.07739        17.00561         0.00609         0.00638         0.01083
+    1_25        3       7    673744.32454   3937043.31980        13.07693         0.00651         0.00666         0.01098
+    1_26        3       1    673812.67480   3937020.95336        19.56997         0.00884         0.00890         0.01153
+    1_27        3       2    673293.57378   3937089.51558        15.17290         0.00855         0.00857         0.01123
+    1_28        3       9    673374.28457   3937063.86190        10.04208         0.00614         0.00623         0.01074
+    1_29        3      15    673419.45603   3937079.95774        13.41668         0.00524         0.00560         0.00993
+    1_30        3      17    673485.90885   3937079.66506         9.62936         0.00497         0.00531         0.00973
+    1_31        3      17    673538.78442   3937054.93555        14.98372         0.00488         0.00510         0.00963
+    1_32        3       7    673636.80469   3937103.33698        14.94474         0.00642         0.00686         0.01063
+    1_33        3       9    673720.06489   3937071.25716         9.79947         0.00615         0.00680         0.01068
+    1_34        3       1    673794.52275   3937109.17979        17.21795         0.00887         0.00894         0.01132
+    1_35        3       3    673804.68088   3937061.63973        14.87749         0.00800         0.00821         0.01120
+    1_36        3       1    673311.81572   3937160.32827        20.70121         0.00907         0.00910         0.01142
+    1_37        3       8    673404.33960   3937138.23256        14.81132         0.00650         0.00710         0.01060
+    1_38        3      10    673466.74765   3937132.24964        15.10349         0.00593         0.00651         0.01025
+    1_39        3      11    673479.72323   3937117.61380        14.89862         0.00572         0.00610         0.01021
+    1_40        3      10    673549.36877   3937142.32936        11.16009         0.00602         0.00678         0.01031
+    1_41        3       8    673614.89908   3937136.45595        11.00440         0.00641         0.00714         0.01045
+    1_42        3       1    673666.19633   3937166.78132        16.43150         0.00898         0.00903         0.01131
+    1_44        3       1    673798.88004   3937131.13342        17.13967         0.00896         0.00909         0.01127
+    1_45        3       5    673510.87960   3937182.33645        16.25482         0.00727         0.00792         0.01077
+    1_48        3       1    673672.66392   3937189.26777        16.70900         0.00905         0.00915         0.01128
+     1_5        3       4    673651.25937   3936883.05898        47.27755         0.00745         0.00808         0.01065
+     1_9        3       4    673329.26082   3936944.30922        13.27469         0.00761         0.00763         0.01106
+     2_0        4       3    673373.17289   3936872.72562        14.48799         0.02065         0.05444         0.09793
+     2_1        4       5    673472.46193   3936899.31258        14.74037         0.01038         0.02095         0.04664
+    2_10        4       8    673699.59047   3936988.10444        45.34470         0.00732         0.00780         0.02526
+    2_11        4       4    673335.19843   3937137.62753        15.08065         0.02320         0.03215         0.07521
+    2_12        4      10    673420.76058   3937138.45234        14.81973         0.00795         0.01417         0.02905
+    2_13        4      17    673505.75015   3937084.87985        12.41875         0.00571         0.00740         0.01762
+    2_14        4      13    673604.55680   3937054.83581        15.76104         0.00628         0.00722         0.02051
+    2_15        4       8    673723.96669   3937086.27972        15.12205         0.00865         0.01607         0.03386
+    2_16        4       2    673782.08833   3937117.81439        17.14526         0.06060         0.08707         0.18786
+    2_17        4       5    673529.97404   3937164.50127        16.15181         0.01045         0.02263         0.04943
+     2_2        4      11    673537.57537   3936937.32867        15.27992         0.00731         0.01093         0.02576
+     2_4        4       4    673710.26761   3936927.11475        60.71049         0.01026         0.01680         0.03991
+     2_7        4      15    673432.25271   3936994.75687        14.19266         0.00596         0.00681         0.01959
+     2_8        4      15    673487.23854   3937007.37986        14.68963         0.00597         0.00629         0.01941
+     2_9        4      10    673616.78057   3936955.52011        38.71636         0.00709         0.00930         0.02243
+
+*********************************************************************************************************************
+****************************************************** CHECK POINTS *************************************************
+*********************************************************************************************************************
+
+Differences in check point coordinates (given - estimated), sorted:
+          Id           DX           DY           DZ         DXYZ
+        2_16     0.088024     0.111894    -0.259021     0.295567
+        2_17     0.007605     0.013676    -0.047025     0.049560
+         2_2     0.006303    -0.019099    -0.044910     0.049208
+         2_0     0.001653    -0.019745    -0.026251     0.032889
+        2_12    -0.009348    -0.013647     0.024253     0.029357
+        2_15     0.006313     0.013803    -0.021284     0.026142
+         2_1     0.002624    -0.022656    -0.004698     0.023286
+        2_11    -0.013887    -0.015048    -0.009791     0.022697
+         2_4     0.003280     0.006786     0.017884     0.019408
+        2_10    -0.002352     0.003955     0.015391     0.016064
+         2_7     0.013302     0.006617     0.001292     0.014913
+         2_8    -0.003706    -0.001635     0.012914     0.013534
+         2_9     0.004703     0.005014    -0.011308     0.013234
+        2_13    -0.000567    -0.003149     0.008091     0.008701
+        2_14     0.002181    -0.000185    -0.005351     0.005781
+
+RMSEX: 0.023678 RMSEY: 0.031328 RMSEZ: 0.070292 RMSEXYZ: 0.080518
+
+*********************************************************************************************************************
+******************************************************** RMSE *******************************************************
+*********************************************************************************************************************
+
+Per-image RMSE:
+    image_id   #image_points      rmse_x[px]      rmse_y[px]     rmse_xy[px]                               camera
+         0_0              28           0.459           0.460           0.455 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+         0_1              28           0.324           0.461           0.395 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+        0_10              28           0.437           0.395           0.413 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+       0_100              27           0.439           0.418           0.424 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+       0_101              31           0.412           0.412           0.409 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+       0_102              32           0.414           0.357           0.384 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+       0_103              34           0.491           0.459           0.471 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+       0_104              33           0.509           0.357           0.436 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+       0_105              29           0.385           0.448           0.414 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+       0_106              30           0.336           0.463           0.401 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+       0_107              28           0.373           0.497           0.435 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+       0_108              25           0.405           0.398           0.398 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+       0_109              26           0.363           0.401           0.379 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+        0_11              25           0.430           0.328           0.378 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+       0_110              27           0.394           0.400           0.393 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+       0_111              25           0.473           0.318           0.399 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+       0_112              28           0.317           0.489           0.409 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+        0_12              26           0.466           0.562           0.511 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+        0_13              22           0.344           0.363           0.350 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+         0_2              30           0.432           0.477           0.451 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+       0_200              28           0.422           0.364           0.391 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+       0_201              32           0.493           0.373           0.434 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+       0_202              36           0.408           0.411           0.407 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+       0_203              37           0.471           0.459           0.462 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+       0_204              35           0.411           0.432           0.419 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+       0_205              36           0.484           0.418           0.449 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+       0_206              34           0.430           0.488           0.457 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+       0_207              31           0.446           0.428           0.433 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+         0_3              29           0.419           0.446           0.429 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+         0_4              30           0.336           0.422           0.378 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+         0_5              25           0.448           0.387           0.414 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+         0_6              28           0.447           0.408           0.424 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+         0_7              25           0.404           0.475           0.437 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+         0_8              23           0.414           0.517           0.463 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+         0_9              26           0.350           0.396           0.370 D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam
+
+Per-camera RMSE:
+                             camera   #image_points      rmse_x[px]      rmse_y[px]     rmse_xy[px]
+D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem/baProblem\myCamera.cam            1017           0.415           0.422           0.418
+
+RMSE of control points: (X, Y and Z):
+0.007780 0.005730 0.004668
+
+RMSE of observed external orientaiton:
+Number of images with observed projection center coordinates: 0
+Number of images with observed angles: 0
+
+RMSE of projection center coordinates:
+RMSE X  :       0.00000
+RMSE Y  :       0.00000
+RMSE Z  :       0.00000
+RMSE XY :       0.00000
+RMSE XYZ:       0.00000
+
+RMSE of angles:
+RMSE Angle1        :       0.00000 [deg]   =        0.0 ["]
+RMSE Angle2        :       0.00000 [deg]   =        0.0 ["]
+RMSE Angle3        :       0.00000 [deg]   =        0.0 ["]
+RMSE Absolute Angle:       0.00000 [deg]   =        0.0 ["]
+
+*********************************************************************************************************************
+***************************************************** RESIDUALS *****************************************************
+*********************************************************************************************************************
+
+Image points residuals: 
+  point_id   image_id        vx        vy      vxy
+      0_31       0_12     1.547    -0.696     1.696
+      0_23      0_205    -1.054    -1.309     1.681
+      0_58      0_203     1.082     0.919     1.419
+      0_39        0_2    -0.526     1.308     1.410
+      0_23        0_3    -0.372    -1.313     1.365
+       2_7      0_101     1.119    -0.769     1.357
+      1_40      0_108    -1.214    -0.536     1.327
+      1_32      0_107    -0.933     0.912     1.305
+      0_76      0_201     1.138    -0.564     1.270
+      0_58      0_201    -1.126     0.552     1.254
+      1_24      0_111    -1.137     0.522     1.251
+      0_42      0_104     0.825    -0.937     1.249
+      0_42      0_105    -0.570     1.085     1.226
+      0_61      0_105     0.960    -0.758     1.223
+       2_9        0_8    -0.227     1.197     1.218
+      1_32      0_108     0.348    -1.154     1.205
+       2_7      0_103     0.942    -0.747     1.202
+      0_26      0_104    -1.158     0.320     1.201
+      0_48      0_112     0.119    -1.193     1.199
+      0_64      0_206    -1.169    -0.204     1.187
+      1_10        0_0     0.617    -1.013     1.186
+      0_23        0_2     0.511     1.065     1.181
+      0_61      0_103    -1.178     0.077     1.181
+      1_14        0_8     1.156    -0.195     1.172
+      0_77      0_203    -0.078    -1.158     1.160
+      0_27      0_107    -0.308    -1.110     1.152
+       2_1        0_4     0.489    -1.043     1.152
+      0_47      0_110    -0.790    -0.832     1.148
+      0_79      0_204    -1.137    -0.005     1.137
+      0_38        0_1     0.186     1.114     1.129
+      1_12        0_7     0.765    -0.817     1.120
+      0_60      0_103    -0.552    -0.974     1.119
+      0_22        0_2    -1.007    -0.483     1.117
+      1_30      0_202    -0.950     0.586     1.116
+      0_56        0_3    -1.076     0.235     1.101
+      0_63      0_105     0.266    -1.065     1.098
+      1_29      0_100     0.613    -0.905     1.092
+      0_59      0_100     0.830    -0.692     1.081
+      1_19      0_201     1.032    -0.314     1.078
+      0_64      0_205    -0.957     0.491     1.075
+      0_38      0_102    -0.653     0.851     1.073
+      1_21      0_207     1.040    -0.258     1.071
+      0_59      0_200    -0.992    -0.402     1.070
+      0_78      0_202    -1.054     0.175     1.068
+      0_49      0_112    -0.033     1.064     1.064
+      1_23        0_8    -0.894     0.576     1.064
+      1_30        0_6     0.578     0.891     1.062
+       2_9      0_106     0.206     1.036     1.056
+       1_9      0_100     0.146    -1.044     1.055
+      1_29      0_203    -0.355     0.993     1.054
+       2_2        0_5     0.999    -0.310     1.046
+      0_31      0_110     0.388    -0.965     1.040
+      0_48       0_12    -0.517    -0.901     1.038
+      0_31      0_109    -0.493     0.904     1.030
+       1_9      0_101     0.497     0.900     1.028
+      1_27        0_0    -0.680     0.756     1.016
+      0_46        0_9     0.976     0.273     1.014
+      0_44      0_106     0.367    -0.938     1.007
+       2_7        0_0     0.240    -0.972     1.001
+      1_11      0_102    -0.996     0.089     1.000
+      0_45        0_6     0.929    -0.362     0.997
+      0_23      0_202    -0.146    -0.984     0.995
+      1_19      0_101    -0.910    -0.392     0.991
+      0_64      0_107    -0.248    -0.960     0.991
+      1_25       0_12     0.601    -0.783     0.987
+       2_8      0_106    -0.855     0.491     0.986
+      0_60      0_204    -0.486    -0.857     0.985
+      0_62      0_108     0.806     0.564     0.984
+      0_41        0_2     0.803    -0.566     0.982
+      0_49       0_10     0.970     0.113     0.977
+      1_21        0_5     0.841     0.481     0.969
+      0_66       0_10    -0.651    -0.705     0.959
+      0_65        0_7     0.072     0.955     0.958
+      1_24      0_110     0.888    -0.360     0.958
+      1_28        0_0     0.791     0.523     0.948
+      0_46       0_11     0.937    -0.136     0.947
+      0_51       0_13    -0.717     0.615     0.945
+      0_55      0_200    -0.217     0.914     0.939
+      2_10      0_112    -0.754    -0.550     0.934
+      0_33      0_110    -0.734     0.575     0.932
+      0_22      0_104    -0.922     0.131     0.931
+      0_63      0_103     0.566     0.739     0.931
+      0_64      0_207     0.904    -0.222     0.930
+      1_10      0_102     0.825    -0.428     0.929
+      1_24       0_13     0.404    -0.835     0.928
+      0_57      0_202    -0.620     0.689     0.927
+      0_47      0_207    -0.251    -0.885     0.920
+      1_25      0_111     0.740    -0.543     0.918
+      0_27        0_9    -0.700     0.588     0.915
+      0_58      0_100     0.796     0.442     0.911
+      1_39      0_206    -0.100     0.903     0.909
+      0_63      0_203     0.837    -0.351     0.908
+      0_64        0_8    -0.343    -0.839     0.906
+      0_65        0_8    -0.549    -0.718     0.904
+      0_59      0_204     0.532     0.723     0.897
+      0_61      0_206     0.814     0.378     0.897
+      1_15       0_12    -0.192     0.874     0.895
+      0_60      0_202     0.290    -0.845     0.894
+      0_47       0_10    -0.072    -0.891     0.894
+      1_40      0_207    -0.380    -0.808     0.893
+      0_66        0_8    -0.120    -0.883     0.891
+      1_10        0_1     0.341     0.818     0.886
+      0_68      0_112     0.124    -0.873     0.882
+      1_40      0_105    -0.622    -0.620     0.878
+      0_63      0_106    -0.715    -0.500     0.872
+      1_25       0_10    -0.789     0.364     0.869
+      0_39      0_200     0.548    -0.673     0.868
+      0_59      0_102    -0.593    -0.627     0.863
+      1_22        0_6    -0.191    -0.842     0.863
+       2_8      0_203     0.359    -0.784     0.862
+      1_45      0_205     0.678    -0.532     0.862
+      1_31        0_6    -0.849     0.145     0.861
+       0_5        0_0    -0.678     0.528     0.860
+      1_25      0_112    -0.333     0.790     0.858
+      1_29        0_0     0.238    -0.823     0.856
+      0_62      0_206     0.288     0.804     0.854
+      2_13      0_206    -0.790    -0.322     0.853
+      0_56        0_2     0.013    -0.852     0.852
+      0_76      0_102     0.833     0.175     0.852
+      0_96      0_205     0.011     0.849     0.849
+      1_25       0_11     0.810    -0.251     0.848
+      0_43      0_206    -0.474    -0.701     0.846
+      0_58      0_103     0.582    -0.613     0.846
+      0_79      0_203     0.595     0.598     0.843
+      1_21      0_203    -0.653     0.532     0.842
+      0_45        0_5     0.183     0.821     0.841
+      0_65       0_10     0.585     0.600     0.838
+      2_15       0_12    -0.025     0.837     0.837
+      1_29      0_204     0.777    -0.311     0.837
+      0_26        0_6    -0.835    -0.028     0.835
+      0_63      0_206     0.576     0.600     0.831
+      2_13      0_102    -0.828    -0.071     0.831
+      0_45      0_206    -0.037    -0.829     0.830
+       2_0        0_2     0.805     0.201     0.830
+      0_23        0_4     0.320     0.765     0.830
+      2_13        0_7    -0.801     0.218     0.830
+      0_76      0_203    -0.567     0.604     0.828
+      1_23      0_106     0.392    -0.728     0.826
+      0_25      0_103     0.550    -0.616     0.825
+       2_8        0_4     0.039     0.824     0.825
+       2_8      0_103    -0.316    -0.762     0.825
+      1_11      0_101    -0.741     0.359     0.823
+      0_48      0_111     0.607    -0.556     0.823
+      1_13        0_7     0.520    -0.635     0.821
+      0_77      0_201     0.019     0.820     0.821
+      0_30       0_10    -0.591     0.568     0.820
+      1_39      0_102    -0.353     0.736     0.816
+      1_39      0_104     0.814    -0.044     0.815
+      0_30       0_12     0.628    -0.520     0.815
+      0_60      0_203    -0.766    -0.278     0.814
+      1_33       0_11    -0.641     0.501     0.814
+      2_13      0_207    -0.813    -0.016     0.813
+      1_11      0_201    -0.666     0.465     0.812
+      1_31      0_206    -0.483    -0.652     0.811
+      0_31       0_11    -0.787    -0.196     0.811
+       1_9        0_0     0.758     0.288     0.811
+      0_49       0_12    -0.310     0.747     0.809
+      0_61        0_3    -0.805     0.045     0.806
+      0_87      0_112    -0.804    -0.042     0.805
+      0_40        0_1     0.231     0.771     0.805
+      0_46      0_107     0.351     0.724     0.805
+      1_11        0_3     0.456    -0.661     0.803
+      0_59        0_0    -0.753     0.278     0.802
+      0_23      0_203     0.801     0.008     0.801
+      0_20      0_100    -0.674     0.431     0.800
+      0_60      0_105    -0.583    -0.546     0.799
+      0_42      0_202     0.742    -0.295     0.799
+      0_66      0_207    -0.607     0.516     0.797
+      1_20      0_103    -0.198     0.766     0.792
+      0_30      0_110     0.603     0.513     0.791
+      0_46      0_207    -0.452     0.643     0.785
+      1_31        0_3     0.094     0.779     0.785
+      0_61      0_204    -0.284    -0.731     0.785
+      0_62      0_207    -0.623     0.476     0.785
+      0_30      0_111    -0.665    -0.416     0.784
+      1_37      0_203     0.737    -0.266     0.783
+      1_27      0_200     0.775     0.106     0.783
+      1_16       0_12     0.556     0.551     0.783
+      0_24      0_104    -0.353     0.698     0.783
+      2_10       0_12    -0.321    -0.708     0.777
+      1_13        0_6    -0.756     0.172     0.775
+      1_31      0_205     0.716    -0.294     0.774
+      1_40      0_107     0.640     0.435     0.774
+       2_2        0_4    -0.772    -0.043     0.773
+      2_14      0_107    -0.612    -0.469     0.771
+      0_48       0_11     0.203    -0.742     0.769
+      0_41      0_202    -0.211     0.736     0.766
+      0_60        0_6    -0.710     0.284     0.765
+      1_33       0_12     0.298     0.703     0.764
+      0_79      0_206    -0.703     0.298     0.763
+      0_59      0_201     0.724     0.236     0.762
+       2_2        0_6     0.338    -0.682     0.761
+      1_32      0_207     0.368    -0.665     0.761
+      0_45      0_207     0.759     0.041     0.760
+       2_2        0_7    -0.587    -0.482     0.759
+      1_38      0_204     0.149     0.744     0.759
+      0_46      0_110     0.214     0.726     0.757
+      1_40      0_104     0.351     0.670     0.757
+      0_69       0_12     0.264     0.709     0.757
+      0_87      0_111     0.753     0.063     0.756
+      1_39      0_103    -0.728     0.174     0.749
+      0_28      0_109     0.370    -0.650     0.748
+      1_29        0_1     0.010    -0.747     0.748
+      1_38      0_201    -0.432     0.609     0.747
+      1_21      0_106     0.561     0.491     0.746
+      0_78      0_105     0.250     0.703     0.746
+      0_82      0_205    -0.419     0.616     0.744
+      1_32      0_109    -0.736    -0.109     0.744
+      1_33       0_10     0.031    -0.743     0.744
+      0_61        0_4     0.593     0.446     0.742
+      1_29      0_103    -0.654     0.350     0.742
+      0_24      0_206     0.118     0.732     0.742
+      0_62      0_106    -0.100     0.732     0.739
+      2_10        0_9     0.407    -0.616     0.738
+      1_30      0_205    -0.556    -0.484     0.738
+      0_26        0_8    -0.121     0.726     0.736
+       2_2      0_103    -0.736     0.004     0.736
+      0_22      0_101    -0.030     0.734     0.735
+      0_42      0_205    -0.075     0.728     0.732
+      0_64      0_108    -0.618    -0.392     0.732
+      0_80      0_206     0.029     0.731     0.732
+       0_5        0_3     0.607     0.407     0.731
+      1_18        0_0     0.485     0.546     0.730
+      0_77      0_103     0.524     0.508     0.730
+      0_65      0_107     0.724     0.094     0.730
+      2_13        0_6    -0.382    -0.617     0.726
+      1_40      0_203    -0.157    -0.708     0.725
+      0_58      0_200     0.653    -0.314     0.725
+      0_14       0_11     0.724    -0.020     0.724
+      2_10      0_109     0.396    -0.605     0.723
+      0_44      0_206     0.457    -0.556     0.720
+      1_40      0_204    -0.698     0.175     0.720
+      1_28      0_201     0.501     0.515     0.718
+      0_57      0_100    -0.716    -0.058     0.718
+      0_47      0_107    -0.314    -0.641     0.714
+      0_80      0_106    -0.369     0.607     0.710
+      0_42      0_206     0.581     0.406     0.708
+      1_31      0_204     0.306    -0.637     0.707
+      1_45      0_204     0.308     0.634     0.705
+      2_13      0_203    -0.502     0.492     0.703
+      2_13      0_104    -0.416    -0.566     0.703
+      1_10      0_101    -0.586    -0.388     0.703
+      0_68       0_12    -0.042    -0.701     0.703
+      0_63        0_5     0.540    -0.449     0.702
+      0_45      0_109     0.696     0.088     0.701
+      0_23      0_201    -0.688     0.132     0.701
+      0_79      0_207     0.501     0.490     0.701
+      1_29      0_202    -0.006    -0.700     0.700
+      0_65      0_207    -0.630     0.304     0.700
+      0_78      0_204     0.035     0.696     0.697
+      0_22        0_1     0.687     0.107     0.696
+      2_12      0_103    -0.113    -0.686     0.695
+      0_60      0_104    -0.693     0.032     0.694
+      0_63        0_4    -0.653    -0.233     0.693
+      0_61        0_5     0.031    -0.692     0.692
+      0_61      0_205    -0.651    -0.234     0.692
+      1_20      0_203     0.689    -0.044     0.691
+      1_31      0_106    -0.328    -0.606     0.689
+       0_6        0_5     0.067     0.685     0.688
+      0_25        0_6     0.534     0.434     0.688
+      1_39      0_202     0.373    -0.575     0.685
+      0_42        0_1     0.683    -0.032     0.683
+      1_24       0_11    -0.171    -0.658     0.680
+      0_45        0_7    -0.244     0.634     0.679
+      0_41      0_102     0.404     0.543     0.677
+      0_41      0_205     0.490    -0.468     0.677
+      1_18      0_100     0.418     0.533     0.677
+      0_29        0_9     0.627     0.248     0.674
+       0_7        0_5     0.626    -0.245     0.672
+      0_26        0_7     0.197     0.643     0.672
+      1_12      0_105    -0.327     0.587     0.672
+      0_60      0_206     0.378    -0.554     0.671
+      0_59      0_103     0.414     0.527     0.670
+       2_8        0_5    -0.665    -0.085     0.670
+      1_21      0_104     0.133    -0.656     0.669
+      2_14       0_10    -0.665     0.063     0.668
+       2_8        0_2    -0.436    -0.506     0.668
+      0_40      0_200    -0.637    -0.201     0.668
+      0_24        0_3    -0.470    -0.474     0.668
+      0_59      0_202    -0.230    -0.624     0.666
+      0_48       0_10     0.533    -0.398     0.665
+      0_44      0_205    -0.645     0.164     0.665
+      0_27      0_105    -0.596     0.291     0.664
+      1_30      0_102    -0.125    -0.651     0.663
+      2_17      0_206    -0.375    -0.546     0.663
+      0_78      0_103     0.561     0.352     0.662
+      0_62      0_205     0.516     0.415     0.662
+      0_59      0_104    -0.557     0.357     0.662
+      0_59        0_2     0.444    -0.489     0.661
+      0_78      0_104    -0.432    -0.496     0.658
+      1_24      0_112     0.655    -0.056     0.658
+      0_56        0_0     0.579     0.309     0.656
+      1_24      0_109    -0.335    -0.564     0.656
+      0_59        0_4     0.485     0.442     0.656
+      1_12        0_4     0.181    -0.630     0.656
+      0_78      0_205     0.637    -0.154     0.655
+      2_14      0_108    -0.641    -0.133     0.655
+      0_24        0_7    -0.548     0.356     0.654
+       1_1        0_0     0.637     0.133     0.651
+      0_66      0_111    -0.649    -0.047     0.651
+      0_95      0_206    -0.410    -0.505     0.651
+      0_23        0_1    -0.005     0.650     0.650
+      0_63      0_104     0.649     0.018     0.650
+      1_30        0_2    -0.371     0.532     0.649
+      2_14        0_9     0.224     0.609     0.649
+      0_48      0_109    -0.644    -0.081     0.649
+      1_32      0_111     0.602    -0.235     0.646
+      0_38      0_100     0.541     0.353     0.646
+      1_30        0_5    -0.480    -0.430     0.645
+      1_15      0_112     0.234     0.600     0.644
+       0_5        0_1     0.184    -0.615     0.642
+      0_79      0_103    -0.620     0.162     0.641
+      1_30      0_103     0.603     0.219     0.641
+      0_40      0_201     0.253     0.589     0.641
+      0_25        0_3     0.641    -0.000     0.641
+      0_62      0_204     0.346    -0.539     0.641
+      0_60      0_205     0.540     0.344     0.640
+      0_40      0_100    -0.379     0.516     0.640
+      0_21        0_2     0.551     0.325     0.640
+      1_33       0_13     0.420     0.482     0.639
+      0_22      0_103     0.278     0.576     0.639
+      0_43      0_106    -0.245    -0.589     0.638
+      0_27        0_7    -0.636    -0.045     0.638
+      1_21        0_3     0.580    -0.263     0.637
+      2_13      0_205     0.637    -0.014     0.637
+      1_15       0_13     0.241    -0.585     0.633
+      0_58        0_1     0.245    -0.583     0.632
+      0_64        0_7     0.562    -0.289     0.632
+      0_39      0_201    -0.394    -0.493     0.631
+      0_23      0_104     0.551    -0.305     0.630
+      1_12      0_103    -0.081     0.624     0.629
+      1_23        0_7    -0.172    -0.604     0.629
+      0_24        0_5    -0.627    -0.007     0.627
+       2_0        0_0    -0.569     0.263     0.627
+      0_40      0_102     0.285     0.555     0.624
+      0_78      0_107    -0.416    -0.461     0.621
+      1_29        0_2     0.272     0.558     0.621
+       2_2      0_105     0.519    -0.337     0.619
+      1_31        0_8     0.338     0.518     0.619
+      0_46       0_10    -0.471    -0.402     0.619
+      0_64      0_109    -0.125     0.602     0.615
+       2_9        0_7    -0.115     0.604     0.615
+      0_56      0_101    -0.605    -0.107     0.615
+      0_80      0_207     0.295     0.539     0.614
+       2_7      0_201     0.614     0.007     0.614
+      0_23      0_204     0.569     0.230     0.614
+      0_14       0_12    -0.612     0.003     0.612
+      1_33      0_109     0.399    -0.463     0.611
+      1_31      0_108     0.283     0.540     0.610
+      0_63        0_7     0.259    -0.550     0.608
+      0_41      0_200     0.182     0.576     0.604
+      1_34      0_112     0.270    -0.539     0.603
+      0_77      0_204    -0.560     0.221     0.602
+      0_60        0_4     0.160    -0.580     0.601
+      0_67       0_10     0.414     0.433     0.600
+      0_20        0_0    -0.543    -0.254     0.599
+      1_29        0_3     0.217     0.559     0.599
+      0_23        0_5     0.265     0.537     0.599
+      1_11        0_0    -0.589    -0.102     0.597
+      1_19      0_202    -0.278    -0.528     0.597
+      0_62      0_107     0.061    -0.594     0.597
+      0_21        0_1    -0.589     0.094     0.596
+      1_29        0_4    -0.394    -0.443     0.593
+       2_7      0_100    -0.560     0.194     0.592
+      1_21        0_7     0.560     0.191     0.592
+      1_39      0_203    -0.469     0.358     0.590
+      2_12      0_200     0.589     0.027     0.590
+      1_12        0_6     0.412     0.421     0.590
+      1_22        0_9     0.134    -0.574     0.590
+      0_62      0_104    -0.589     0.005     0.589
+      0_56      0_201    -0.452    -0.377     0.589
+      1_31      0_203     0.436    -0.395     0.589
+      0_77      0_100    -0.555     0.196     0.589
+      1_11      0_202     0.047     0.585     0.586
+      0_59        0_3     0.581    -0.077     0.586
+      2_15       0_13    -0.291    -0.507     0.585
+      0_39      0_202     0.583    -0.040     0.584
+      1_31      0_104     0.065     0.579     0.583
+      0_80      0_108     0.329     0.480     0.582
+      0_38      0_203    -0.571     0.104     0.581
+      0_57      0_201    -0.264    -0.516     0.580
+      0_27        0_5    -0.477    -0.327     0.579
+      0_32       0_13     0.546    -0.192     0.579
+      1_11        0_2    -0.484     0.317     0.578
+      1_21      0_105     0.562    -0.137     0.578
+      1_31        0_4     0.005     0.578     0.578
+      0_24      0_207     0.199     0.539     0.575
+      0_45      0_107     0.177     0.547     0.575
+       2_2      0_106     0.064    -0.569     0.573
+      0_42        0_6     0.287     0.493     0.571
+       2_9        0_6     0.030     0.569     0.570
+      0_76      0_202     0.431     0.370     0.568
+      1_16      0_111     0.406     0.395     0.567
+      0_57      0_203    -0.384    -0.415     0.566
+      0_79      0_205     0.532    -0.193     0.566
+       2_4       0_10     0.507    -0.248     0.564
+      0_39      0_101     0.519    -0.220     0.563
+      0_60      0_107     0.557    -0.082     0.563
+      1_33      0_111    -0.538    -0.167     0.563
+      1_20        0_2     0.458     0.327     0.563
+      2_14        0_7    -0.120    -0.549     0.562
+      1_35       0_12    -0.084    -0.555     0.562
+      0_42      0_203     0.092    -0.553     0.560
+      0_21      0_202     0.455     0.326     0.560
+       2_1        0_5    -0.387     0.404     0.559
+       2_1        0_3     0.009     0.559     0.559
+      0_41      0_103     0.322    -0.456     0.558
+      2_14      0_109    -0.446     0.333     0.557
+      1_11      0_204    -0.139     0.538     0.556
+      1_40      0_205    -0.206     0.516     0.556
+      0_28        0_9    -0.544     0.111     0.556
+      0_42        0_5    -0.553    -0.048     0.556
+       2_9      0_108     0.301     0.467     0.555
+      0_57      0_200     0.335     0.442     0.555
+       2_8        0_3     0.109    -0.544     0.554
+      2_12      0_204     0.444    -0.329     0.553
+      1_23        0_9    -0.009    -0.553     0.553
+      1_10        0_2    -0.313    -0.455     0.552
+      1_11      0_104     0.522    -0.180     0.552
+      0_23      0_105    -0.498    -0.236     0.551
+      0_42      0_103     0.546    -0.066     0.550
+      0_95      0_205     0.383    -0.394     0.550
+      1_20        0_1    -0.509     0.207     0.550
+      0_43        0_2     0.547    -0.048     0.549
+      0_43        0_6     0.058    -0.546     0.549
+      0_40      0_104    -0.540    -0.096     0.549
+      0_43      0_203     0.218     0.504     0.549
+      0_44      0_109     0.353     0.419     0.548
+      0_90      0_200    -0.547     0.010     0.547
+      0_22        0_3    -0.179     0.515     0.545
+      0_70       0_12    -0.319     0.441     0.544
+      1_22      0_109     0.023     0.543     0.543
+      0_47        0_9    -0.248     0.483     0.543
+      0_63      0_207    -0.312    -0.444     0.543
+      1_28        0_1    -0.275    -0.464     0.540
+      1_37      0_201    -0.096    -0.530     0.539
+       2_8      0_206     0.270     0.466     0.539
+      0_58      0_202     0.440    -0.310     0.538
+      1_12      0_104     0.531     0.079     0.537
+      1_20      0_202    -0.308     0.439     0.537
+      0_51       0_11     0.530    -0.083     0.536
+      0_50       0_12     0.208    -0.494     0.536
+      0_55        0_0    -0.170    -0.508     0.536
+      0_21      0_101     0.347     0.408     0.535
+       2_9       0_10     0.496    -0.201     0.535
+      0_80      0_205    -0.434     0.311     0.534
+      0_46      0_108     0.409    -0.343     0.534
+      0_76      0_205     0.530     0.060     0.533
+       1_0        0_0    -0.134    -0.516     0.533
+      1_35      0_112    -0.132    -0.516     0.533
+      0_82      0_207     0.215    -0.486     0.532
+      0_30       0_13     0.496     0.191     0.532
+      1_23      0_107     0.083     0.525     0.532
+      1_13        0_9    -0.007    -0.530     0.530
+      0_27      0_106    -0.365     0.383     0.529
+      0_58      0_204     0.498    -0.177     0.528
+      2_13      0_202     0.515     0.116     0.527
+      1_39      0_204     0.273    -0.449     0.526
+      0_67       0_12    -0.279     0.446     0.526
+       2_9      0_107    -0.385     0.356     0.524
+      2_11      0_200    -0.045     0.521     0.523
+      1_12      0_204    -0.489     0.186     0.523
+       2_0        0_1    -0.236    -0.464     0.520
+      0_77      0_101    -0.278    -0.437     0.518
+      0_43      0_104     0.467    -0.224     0.518
+      0_25        0_5    -0.424     0.297     0.518
+      0_96      0_206    -0.205    -0.475     0.517
+      0_22      0_102    -0.219    -0.468     0.517
+      1_39      0_101     0.231    -0.463     0.517
+      0_32       0_12    -0.464    -0.228     0.517
+      1_28      0_101    -0.253    -0.450     0.516
+      1_28        0_2    -0.154    -0.493     0.516
+      0_51       0_12    -0.464    -0.226     0.516
+      1_30      0_204     0.375    -0.355     0.516
+      0_49       0_11    -0.499     0.132     0.516
+      0_25      0_107     0.145     0.492     0.513
+      0_38      0_101     0.048     0.510     0.512
+      0_55      0_100    -0.478    -0.181     0.511
+      0_20      0_101     0.239    -0.451     0.511
+      0_60        0_3    -0.319     0.398     0.510
+      0_62      0_105     0.391     0.327     0.510
+      0_51      0_112    -0.470    -0.196     0.509
+      1_15       0_10     0.132     0.491     0.509
+      0_65      0_109    -0.343     0.375     0.509
+      0_93      0_205    -0.506    -0.050     0.508
+      0_33       0_13    -0.500     0.090     0.508
+      0_93      0_206     0.505     0.050     0.508
+       2_2      0_104     0.467    -0.199     0.508
+       2_8      0_202    -0.496    -0.107     0.507
+      0_44        0_6     0.465    -0.203     0.507
+       2_7      0_204    -0.296    -0.410     0.506
+      0_64        0_9     0.037    -0.502     0.504
+      0_75      0_100    -0.154    -0.479     0.503
+      1_11        0_4    -0.379     0.331     0.503
+      2_13        0_4     0.501     0.042     0.503
+      0_76      0_204    -0.208     0.457     0.502
+      2_12      0_203    -0.403     0.297     0.501
+      0_27        0_8    -0.057    -0.497     0.500
+      0_51      0_111    -0.200     0.457     0.499
+      0_42        0_3    -0.460    -0.192     0.499
+       0_3        0_0     0.423    -0.264     0.498
+       0_3        0_1    -0.055     0.495     0.498
+      0_59        0_1    -0.471    -0.160     0.498
+      0_41        0_3     0.491    -0.078     0.497
+      0_25        0_4    -0.068    -0.492     0.496
+      0_41      0_101     0.400    -0.293     0.495
+      0_28        0_8     0.493     0.047     0.495
+       1_1        0_1    -0.112    -0.482     0.495
+      0_63        0_6     0.029     0.494     0.494
+      1_37      0_200    -0.477    -0.130     0.494
+      1_22      0_206    -0.212    -0.446     0.494
+      0_61      0_203     0.432     0.238     0.493
+      1_11      0_203    -0.491    -0.051     0.493
+      0_79      0_104     0.457     0.181     0.492
+      2_14      0_205    -0.479    -0.106     0.490
+      0_47        0_7    -0.080    -0.483     0.490
+      0_65        0_9    -0.133    -0.471     0.490
+      0_33      0_111    -0.221    -0.436     0.489
+      2_11      0_100     0.189     0.450     0.488
+      0_22      0_100     0.413    -0.260     0.488
+      0_41        0_0    -0.198     0.444     0.486
+      2_13      0_204    -0.037    -0.485     0.486
+       2_7      0_104    -0.485     0.035     0.486
+      1_21      0_204    -0.463     0.148     0.486
+      1_16       0_13    -0.280     0.396     0.485
+      0_65      0_110    -0.385    -0.295     0.485
+      2_14      0_206    -0.024     0.484     0.484
+      0_29       0_10    -0.245     0.417     0.484
+      1_26       0_13     0.156     0.458     0.484
+      0_44      0_207     0.002    -0.484     0.484
+      1_22        0_7    -0.385    -0.291     0.482
+      2_14        0_8    -0.047     0.479     0.482
+      0_21      0_200     0.072    -0.476     0.482
+      1_41      0_109     0.309     0.369     0.482
+      0_43      0_207    -0.165     0.453     0.482
+      0_63      0_204    -0.199     0.438     0.481
+      0_42      0_101     0.262    -0.403     0.480
+      0_46        0_8    -0.415     0.241     0.480
+      1_28      0_200     0.477    -0.053     0.480
+      0_24      0_204     0.467    -0.106     0.479
+       2_9      0_109     0.300    -0.373     0.479
+      0_60      0_207    -0.326    -0.350     0.479
+      1_41      0_206     0.156     0.452     0.478
+      1_22      0_107     0.147    -0.455     0.478
+      1_12      0_106     0.477    -0.003     0.477
+      1_20        0_3     0.034     0.474     0.475
+       1_5       0_10    -0.426    -0.207     0.474
+      0_38      0_200     0.387     0.274     0.474
+      1_23      0_110    -0.399     0.255     0.474
+       2_7      0_202     0.445     0.161     0.474
+      1_38      0_205     0.393    -0.262     0.472
+      0_11        0_8    -0.153    -0.446     0.472
+       1_2        0_1     0.468    -0.043     0.470
+      1_21      0_102     0.292     0.367     0.469
+      0_67        0_9    -0.252     0.395     0.469
+      0_27        0_6     0.465    -0.041     0.467
+      0_28       0_11     0.147     0.443     0.466
+      1_29      0_101     0.071    -0.460     0.466
+       0_6        0_3     0.034    -0.463     0.464
+      1_33      0_110    -0.300    -0.354     0.464
+      1_41      0_107     0.463    -0.020     0.464
+      0_66       0_12    -0.019     0.462     0.462
+      1_45      0_203    -0.326    -0.326     0.461
+      0_80      0_105     0.238     0.394     0.461
+      2_12      0_201    -0.318    -0.333     0.460
+      1_40      0_206     0.442     0.121     0.458
+      1_45      0_206    -0.431     0.153     0.458
+      0_55      0_101    -0.109     0.443     0.457
+      2_14      0_207    -0.025    -0.455     0.456
+      0_28      0_108     0.055     0.451     0.454
+      0_95      0_204     0.060     0.450     0.454
+      1_39      0_205    -0.168     0.422     0.454
+      0_24      0_105     0.417    -0.177     0.453
+       2_7        0_2     0.436     0.117     0.452
+      0_23      0_206     0.135    -0.431     0.451
+      2_14      0_106     0.395     0.217     0.451
+      0_58        0_4     0.350    -0.283     0.450
+      0_33       0_10     0.362    -0.267     0.450
+      2_15      0_111    -0.356     0.274     0.449
+      0_95      0_207    -0.035     0.447     0.449
+      2_12      0_101     0.317     0.316     0.448
+      0_30      0_112     0.307     0.324     0.446
+      0_40        0_4     0.218    -0.389     0.446
+      1_23       0_10     0.426     0.114     0.441
+       2_7        0_1    -0.394    -0.199     0.441
+      1_38      0_203    -0.435     0.070     0.440
+      0_48        0_9    -0.301     0.321     0.440
+       2_4       0_11    -0.210     0.386     0.439
+      0_39      0_100    -0.404     0.169     0.438
+      0_84      0_110    -0.151     0.411     0.438
+      0_44        0_9    -0.378     0.221     0.438
+      1_14       0_10    -0.014     0.438     0.438
+      1_11      0_205     0.434     0.037     0.435
+      0_44        0_8     0.100     0.423     0.435
+       0_3        0_2    -0.368    -0.231     0.434
+      1_20        0_0    -0.374     0.221     0.434
+      0_67        0_8     0.428    -0.075     0.434
+      1_14      0_111     0.430    -0.041     0.432
+      0_57      0_101     0.239    -0.360     0.432
+      0_50       0_11     0.382     0.201     0.432
+      1_15      0_110     0.424     0.077     0.431
+      1_28      0_102     0.061    -0.426     0.430
+      0_39      0_102    -0.429     0.022     0.430
+      1_15       0_11     0.030     0.427     0.428
+      1_11      0_103     0.388    -0.182     0.428
+      1_32      0_110     0.424    -0.055     0.428
+      0_32      0_112     0.110    -0.413     0.428
+      0_21      0_102     0.390    -0.175     0.428
+       0_5        0_2    -0.314    -0.290     0.427
+      0_42      0_201     0.229    -0.360     0.427
+       2_9      0_110    -0.271     0.328     0.426
+      1_25       0_13    -0.173     0.389     0.426
+      1_37      0_100     0.419    -0.074     0.425
+      0_29        0_8    -0.291    -0.307     0.423
+      1_38      0_104    -0.265     0.329     0.423
+      0_96      0_204     0.138    -0.399     0.422
+       0_6        0_6     0.311    -0.284     0.421
+       2_7        0_4    -0.045    -0.419     0.421
+      0_45      0_106    -0.156    -0.390     0.421
+      0_31        0_9    -0.261     0.329     0.420
+      0_66        0_9     0.163     0.387     0.419
+      0_40      0_101     0.400    -0.123     0.419
+      1_15      0_111     0.199     0.367     0.417
+      0_75      0_200     0.151    -0.388     0.417
+      0_28      0_110    -0.395     0.130     0.416
+      0_24      0_103    -0.301    -0.284     0.414
+      0_40      0_203    -0.306     0.279     0.414
+      0_53       0_12    -0.283     0.301     0.413
+      0_28      0_111    -0.072     0.407     0.413
+       2_1        0_2     0.127     0.392     0.412
+      0_47        0_8    -0.305     0.277     0.412
+      0_67      0_112    -0.253     0.324     0.412
+      0_49        0_9    -0.041    -0.409     0.411
+      0_67      0_111     0.155     0.380     0.410
+      0_26      0_106    -0.285     0.295     0.410
+       0_9        0_7    -0.070     0.403     0.409
+      2_14      0_110     0.177     0.369     0.409
+      0_24      0_106    -0.249     0.325     0.409
+      1_40      0_106     0.265    -0.311     0.409
+      1_12        0_5     0.297    -0.280     0.408
+      0_69      0_112     0.223     0.340     0.406
+      0_63      0_108     0.141     0.380     0.406
+      0_56      0_200     0.164    -0.371     0.406
+      0_11        0_7     0.128     0.385     0.406
+      0_26      0_107    -0.024     0.403     0.404
+      1_31        0_7     0.403     0.018     0.403
+      1_20      0_200    -0.275    -0.295     0.403
+      1_20      0_101    -0.374    -0.151     0.403
+      0_66      0_110     0.068    -0.397     0.402
+      1_18      0_201    -0.364     0.170     0.402
+       2_7      0_203     0.101     0.389     0.402
+      0_57      0_103    -0.147     0.374     0.402
+      0_61      0_202    -0.338     0.216     0.401
+      0_55      0_201    -0.394     0.070     0.400
+      1_19      0_200    -0.398     0.033     0.399
+       2_2      0_108    -0.173    -0.359     0.398
+      2_17      0_205     0.388     0.080     0.397
+      0_31       0_10    -0.394     0.027     0.395
+      0_78      0_203     0.197    -0.340     0.393
+      1_23        0_6    -0.351    -0.175     0.392
+       2_1        0_1    -0.238    -0.312     0.392
+      1_29      0_200    -0.203    -0.333     0.390
+      0_74      0_201    -0.273    -0.278     0.390
+      0_76      0_101    -0.071     0.383     0.389
+      0_70      0_112     0.015     0.388     0.389
+      1_21        0_4    -0.301     0.242     0.386
+      1_16      0_112    -0.273     0.273     0.386
+      0_69       0_13    -0.018    -0.385     0.386
+      0_33       0_11    -0.279     0.266     0.386
+      0_79      0_105    -0.046     0.383     0.386
+       1_2        0_3     0.070     0.378     0.385
+      0_25      0_106     0.272     0.271     0.384
+      0_43      0_102     0.346     0.162     0.382
+       2_9        0_9     0.090    -0.370     0.381
+      1_38      0_103     0.374    -0.069     0.380
+      0_81      0_205    -0.325     0.196     0.379
+      1_37      0_101    -0.143     0.351     0.379
+      1_30      0_201     0.219     0.306     0.377
+       0_7        0_4    -0.364    -0.095     0.377
+      1_18      0_200    -0.249    -0.282     0.376
+      1_37      0_103     0.100    -0.362     0.375
+      0_81      0_206     0.207    -0.312     0.375
+      0_79      0_107    -0.117     0.356     0.375
+      0_41        0_1     0.024    -0.374     0.375
+      1_12      0_205    -0.167     0.334     0.373
+      1_16       0_11     0.249    -0.277     0.372
+       0_7        0_3    -0.261     0.265     0.372
+      0_59      0_203    -0.179    -0.326     0.372
+      0_57      0_102    -0.227     0.294     0.371
+      0_29       0_11    -0.089    -0.359     0.370
+      0_43      0_205     0.079    -0.361     0.370
+      2_13        0_5     0.229     0.290     0.370
+      2_11      0_101    -0.274     0.246     0.368
+      0_21        0_0     0.007    -0.368     0.368
+      0_24      0_205     0.107    -0.351     0.367
+      0_43        0_5    -0.209    -0.301     0.367
+       2_7      0_200    -0.249     0.268     0.366
+      0_24      0_107    -0.019    -0.364     0.364
+      0_70       0_13     0.359    -0.055     0.364
+      0_46      0_109    -0.056    -0.359     0.363
+      0_43        0_3    -0.362     0.021     0.363
+      0_66      0_108    -0.291    -0.216     0.363
+      0_67      0_109     0.301     0.201     0.362
+      2_10       0_11    -0.153     0.327     0.361
+      0_63      0_107     0.216    -0.288     0.360
+      2_10      0_111     0.350    -0.081     0.359
+      0_33      0_112     0.311    -0.179     0.359
+       0_6        0_7    -0.303    -0.189     0.357
+      1_29      0_104     0.209    -0.288     0.356
+      0_64      0_110     0.239    -0.263     0.355
+      2_17      0_207    -0.200     0.293     0.355
+      1_33      0_112     0.050     0.351     0.355
+      1_22      0_207     0.284     0.212     0.354
+      1_20      0_204    -0.224    -0.273     0.353
+      0_12       0_12     0.316     0.156     0.352
+      0_61        0_2    -0.185    -0.299     0.352
+      2_12      0_104     0.250     0.248     0.352
+      0_42        0_2     0.104    -0.336     0.352
+      0_31      0_111     0.227    -0.268     0.351
+      0_56      0_202    -0.244     0.253     0.351
+      0_49      0_109     0.299    -0.183     0.351
+      1_23      0_207    -0.328     0.120     0.349
+      0_21      0_201     0.342     0.066     0.349
+      1_29      0_201     0.345     0.047     0.348
+      2_15      0_110     0.305     0.168     0.348
+      0_23      0_102     0.248    -0.242     0.346
+      0_26        0_5    -0.263    -0.224     0.346
+      0_67       0_11    -0.289    -0.190     0.345
+      1_25      0_110     0.319     0.131     0.345
+      1_10      0_200     0.135     0.317     0.345
+      0_40        0_0    -0.224     0.262     0.345
+      0_21      0_100     0.046    -0.341     0.344
+      0_38      0_201    -0.253    -0.233     0.344
+       1_5        0_8     0.339     0.051     0.343
+      2_10      0_110     0.021     0.342     0.343
+      2_13      0_103    -0.002     0.343     0.343
+      0_91      0_200    -0.340    -0.039     0.342
+      0_56      0_100    -0.262    -0.219     0.342
+      0_91      0_201     0.339     0.038     0.342
+      0_58      0_104     0.320     0.117     0.340
+      1_28      0_100     0.340     0.010     0.340
+      1_22        0_5     0.007     0.340     0.340
+      0_82      0_106     0.304     0.152     0.340
+      2_15      0_112    -0.081    -0.329     0.338
+      0_49       0_13    -0.260     0.217     0.338
+      1_22      0_108    -0.005    -0.337     0.337
+      0_78      0_207     0.210    -0.263     0.337
+      1_14       0_11    -0.251     0.225     0.337
+       2_7        0_3    -0.067    -0.330     0.337
+      0_65      0_111    -0.322     0.098     0.336
+      1_30        0_4    -0.238     0.237     0.336
+      0_44      0_108    -0.228     0.246     0.336
+      0_22      0_105     0.039    -0.333     0.335
+      1_30      0_104    -0.286    -0.174     0.334
+      0_49      0_111    -0.334    -0.014     0.334
+      1_30      0_203     0.332    -0.037     0.334
+      0_60      0_102     0.038    -0.332     0.334
+      0_60      0_106    -0.003    -0.334     0.334
+      2_13        0_3     0.326    -0.072     0.334
+      0_41      0_100     0.019     0.333     0.333
+      0_43      0_103    -0.238    -0.233     0.333
+      0_38      0_202     0.251     0.219     0.333
+      0_23      0_101    -0.006     0.333     0.333
+      0_26      0_105     0.279     0.180     0.332
+      0_40      0_103    -0.262     0.199     0.329
+      0_39        0_1    -0.117    -0.307     0.329
+      0_38        0_0     0.291     0.150     0.328
+      1_41      0_110     0.204    -0.254     0.326
+      0_58      0_102     0.316    -0.080     0.326
+      0_40      0_204    -0.297    -0.131     0.325
+      1_21      0_202     0.321    -0.047     0.325
+      0_53       0_13     0.319    -0.056     0.324
+       0_9        0_5    -0.135    -0.294     0.324
+      0_26        0_4    -0.201     0.251     0.322
+      0_12       0_11    -0.233    -0.221     0.322
+      0_82      0_109    -0.152    -0.283     0.321
+      1_41      0_108     0.306     0.094     0.320
+      1_37      0_102     0.256     0.192     0.320
+      1_13        0_8     0.089    -0.307     0.320
+      0_77      0_102    -0.231    -0.221     0.319
+      0_44      0_105    -0.244    -0.203     0.318
+      0_38        0_2    -0.302     0.092     0.315
+      0_50       0_13    -0.311     0.049     0.315
+      0_46        0_7     0.193     0.249     0.315
+       1_5        0_9     0.237    -0.205     0.313
+      0_66      0_109    -0.267     0.159     0.311
+      1_31      0_107    -0.304    -0.060     0.310
+      1_30        0_3     0.003    -0.309     0.309
+      1_23      0_206     0.110     0.287     0.308
+       1_5       0_11    -0.271     0.145     0.307
+      1_20      0_100    -0.152     0.267     0.307
+      0_30       0_11    -0.258     0.164     0.306
+      1_14      0_110    -0.177    -0.246     0.303
+      0_50      0_111     0.046    -0.299     0.302
+      0_43      0_105    -0.249     0.171     0.302
+      1_21      0_206     0.119     0.276     0.301
+      0_45      0_108     0.298     0.020     0.299
+      0_90      0_202     0.283     0.095     0.299
+      0_41      0_201     0.021    -0.298     0.298
+      0_58        0_2    -0.265     0.131     0.296
+      0_67      0_110    -0.261    -0.140     0.296
+      1_30      0_106     0.132     0.262     0.294
+       0_9        0_8     0.150    -0.252     0.293
+      0_66      0_112     0.077     0.282     0.293
+      0_84      0_109    -0.061    -0.286     0.293
+      1_21      0_103    -0.291    -0.025     0.292
+      1_32      0_206     0.181    -0.229     0.291
+      0_61      0_106     0.164    -0.240     0.291
+      0_47      0_109     0.218     0.189     0.288
+       2_8      0_105     0.125    -0.259     0.287
+       2_8        0_6    -0.092     0.272     0.287
+      0_28       0_10    -0.114    -0.261     0.285
+       0_2        0_1     0.246     0.144     0.285
+      0_20        0_1     0.109     0.262     0.284
+      0_90      0_201     0.263    -0.106     0.283
+      1_38      0_202     0.274    -0.066     0.282
+      0_76      0_105     0.244    -0.134     0.279
+      0_82      0_206     0.231    -0.154     0.277
+      0_82      0_107     0.197     0.194     0.277
+      1_30      0_101    -0.234     0.145     0.276
+      0_45        0_9    -0.163     0.222     0.275
+      1_41      0_207     0.266     0.070     0.275
+       0_6        0_4    -0.109     0.251     0.274
+       0_7        0_6    -0.218     0.164     0.273
+      0_64       0_10     0.193     0.192     0.272
+      1_21      0_205    -0.269     0.035     0.272
+      0_82      0_110    -0.242    -0.124     0.272
+      1_16       0_10     0.046     0.266     0.269
+      0_84      0_112     0.227    -0.145     0.269
+      0_65       0_11     0.132    -0.234     0.269
+      0_39        0_0     0.030     0.266     0.268
+      0_75      0_202    -0.262     0.052     0.267
+       0_9        0_4     0.248     0.095     0.266
+       2_8      0_104     0.265    -0.020     0.266
+      1_12        0_3    -0.262     0.040     0.265
+      1_19        0_0    -0.004    -0.263     0.263
+      1_30      0_105     0.023     0.261     0.262
+      1_11        0_1    -0.254     0.058     0.261
+      0_10        0_9     0.260    -0.012     0.261
+      0_10       0_10    -0.260     0.012     0.260
+      0_50      0_112     0.248     0.074     0.259
+      1_37      0_202    -0.042    -0.255     0.259
+      1_44      0_112     0.013     0.258     0.259
+      1_22        0_8     0.256    -0.011     0.256
+      1_17       0_13    -0.232    -0.108     0.255
+      0_63      0_205     0.129    -0.219     0.254
+      1_10      0_202    -0.239     0.086     0.254
+      0_81      0_207     0.193     0.164     0.253
+       2_8      0_204     0.245     0.062     0.252
+      1_36      0_200    -0.059     0.244     0.251
+      2_12      0_100    -0.250    -0.014     0.251
+      0_24        0_6     0.221    -0.118     0.250
+      0_11        0_9    -0.174     0.179     0.250
+      0_39      0_203    -0.226    -0.106     0.249
+      0_43      0_204     0.136     0.208     0.248
+      0_53      0_112     0.019     0.246     0.247
+      1_28      0_202    -0.227    -0.095     0.246
+      0_43        0_4     0.195     0.151     0.246
+      0_61      0_102    -0.244     0.009     0.245
+      0_67      0_108     0.011     0.244     0.244
+      2_11      0_201    -0.103     0.219     0.242
+      0_33       0_12    -0.227    -0.084     0.242
+      1_33        0_9     0.104    -0.216     0.240
+      0_80      0_109    -0.142    -0.193     0.239
+      1_13        0_5     0.223     0.084     0.239
+      1_39      0_105    -0.206    -0.116     0.236
+      0_76      0_103     0.202     0.121     0.236
+       0_7        0_2     0.218    -0.090     0.236
+      1_19      0_100    -0.046     0.230     0.234
+      0_76      0_104     0.082     0.220     0.234
+      1_11      0_200     0.170     0.159     0.233
+      2_12      0_102     0.064    -0.223     0.232
+      0_11        0_6     0.200    -0.119     0.232
+      2_17      0_204     0.114     0.199     0.230
+      1_48      0_207    -0.204     0.098     0.227
+      1_31      0_103    -0.190     0.122     0.226
+      0_61        0_6    -0.139    -0.174     0.223
+      0_45      0_205    -0.222     0.012     0.222
+      0_77      0_104    -0.198    -0.100     0.222
+      0_56      0_103    -0.096    -0.200     0.222
+      1_31        0_5    -0.217    -0.038     0.220
+      1_14      0_108     0.215     0.046     0.220
+      0_23      0_103    -0.214     0.046     0.219
+      1_22      0_105    -0.122     0.181     0.219
+      0_75      0_201     0.141    -0.164     0.216
+      0_79      0_106     0.213     0.034     0.216
+      0_41      0_203    -0.207    -0.059     0.216
+      0_25      0_104    -0.030     0.213     0.215
+       2_4       0_13    -0.205    -0.065     0.215
+      1_12      0_107     0.208     0.044     0.213
+      0_56        0_1     0.023     0.211     0.212
+      0_61      0_104    -0.194     0.082     0.211
+      0_74      0_200     0.153     0.143     0.209
+      1_39      0_201    -0.208     0.025     0.209
+      0_45      0_105     0.049     0.203     0.209
+      0_68       0_13     0.107    -0.178     0.208
+      2_14        0_6    -0.001    -0.207     0.207
+      0_40      0_202     0.182     0.099     0.207
+      2_13        0_2    -0.199     0.053     0.206
+      1_30      0_206    -0.205    -0.013     0.205
+       0_5        0_4     0.202    -0.031     0.204
+      1_10      0_100     0.051     0.196     0.203
+       2_7      0_102    -0.126    -0.158     0.202
+      0_46      0_111    -0.087     0.182     0.201
+      0_31      0_112     0.018    -0.199     0.200
+      0_41      0_104     0.196    -0.038     0.200
+      1_22      0_106    -0.195    -0.036     0.199
+       0_9        0_6    -0.193     0.047     0.199
+      1_21        0_6     0.043    -0.190     0.194
+      0_64        0_6    -0.120     0.153     0.194
+      1_42      0_207     0.194     0.006     0.194
+      0_65      0_206     0.119    -0.153     0.194
+      1_41      0_205     0.015    -0.192     0.193
+      0_80      0_107    -0.046     0.187     0.192
+      0_60        0_7     0.160     0.104     0.191
+      0_40        0_2    -0.103    -0.160     0.191
+      0_44        0_5     0.132    -0.134     0.188
+      0_47      0_108    -0.066    -0.174     0.187
+      0_24        0_4    -0.082    -0.167     0.186
+      0_42      0_102     0.163    -0.090     0.186
+      1_10      0_201    -0.101    -0.156     0.186
+      0_42        0_4    -0.175     0.057     0.184
+      1_23      0_109     0.097     0.152     0.181
+       1_9        0_1    -0.175    -0.042     0.180
+      0_55        0_1     0.033    -0.176     0.179
+      0_74      0_202     0.117     0.135     0.179
+      0_15       0_13     0.177    -0.011     0.177
+      0_15       0_12    -0.177     0.010     0.177
+      0_58        0_3     0.136     0.113     0.176
+       1_2        0_2    -0.176    -0.010     0.176
+      0_75      0_102     0.176     0.006     0.176
+      1_41      0_106    -0.059    -0.164     0.175
+      2_16      0_111    -0.174    -0.009     0.174
+      0_42      0_106     0.001     0.172     0.172
+      0_44      0_107    -0.115     0.126     0.171
+      1_23      0_108    -0.014    -0.170     0.170
+      2_16      0_112     0.170     0.008     0.170
+      0_58      0_101    -0.116     0.118     0.166
+      2_13      0_105    -0.078     0.145     0.165
+      1_11      0_100    -0.150    -0.063     0.163
+      1_35       0_13    -0.127     0.101     0.162
+      0_12        0_9    -0.116     0.112     0.161
+      1_45      0_202    -0.027     0.158     0.160
+      2_15      0_109    -0.148     0.048     0.156
+      0_77      0_202    -0.092     0.122     0.153
+      1_20        0_4    -0.145    -0.046     0.152
+      0_26      0_108    -0.127     0.084     0.152
+       0_2        0_2    -0.133    -0.071     0.151
+      1_14      0_109     0.117    -0.093     0.150
+      0_49      0_110    -0.126    -0.079     0.148
+      0_22        0_4     0.026     0.144     0.146
+      0_45        0_8     0.031    -0.141     0.145
+      1_31      0_105    -0.096     0.108     0.145
+      0_77      0_200    -0.077    -0.122     0.144
+      0_25        0_7     0.143     0.009     0.144
+      0_40        0_3     0.110    -0.092     0.143
+      0_25      0_105    -0.130    -0.056     0.142
+      0_22        0_0     0.060     0.126     0.140
+      0_44        0_7     0.076     0.115     0.138
+      1_12      0_203    -0.046    -0.130     0.138
+      0_41      0_204    -0.048     0.127     0.136
+       0_2        0_0    -0.114    -0.073     0.135
+      1_38      0_102     0.132     0.024     0.134
+      1_21      0_107    -0.100     0.089     0.133
+       2_8      0_102     0.094     0.093     0.132
+      0_86      0_112    -0.130    -0.001     0.130
+      1_20      0_201    -0.063    -0.111     0.128
+      0_86      0_111     0.127    -0.000     0.127
+       2_2        0_3     0.116     0.053     0.127
+      0_43      0_202    -0.002    -0.126     0.126
+      2_13      0_106     0.072    -0.103     0.126
+      1_20      0_102     0.083     0.094     0.125
+      1_31      0_207    -0.084    -0.088     0.121
+      0_48      0_110    -0.048     0.109     0.119
+      0_42      0_204    -0.119    -0.005     0.119
+       2_4       0_12    -0.091    -0.073     0.116
+      1_38      0_101     0.003     0.114     0.114
+      1_22      0_205    -0.112    -0.018     0.114
+      0_64      0_106     0.043    -0.105     0.113
+      0_14       0_13    -0.111     0.016     0.113
+      0_27      0_108    -0.111     0.018     0.112
+      0_58        0_0    -0.086     0.067     0.108
+      1_19        0_1    -0.088     0.062     0.108
+      2_10       0_10     0.020     0.103     0.105
+      0_24      0_203     0.093     0.025     0.097
+      0_78      0_206    -0.096     0.001     0.097
+      0_59      0_101     0.029     0.091     0.095
+      0_82      0_108    -0.085     0.035     0.092
+      0_81      0_204    -0.077    -0.048     0.091
+      1_24       0_10    -0.050     0.074     0.090
+      2_15       0_11     0.042    -0.077     0.088
+      0_63        0_8    -0.055     0.063     0.084
+      1_24       0_12    -0.031    -0.070     0.077
+      2_17      0_203     0.072    -0.027     0.077
+       1_1        0_2     0.049    -0.057     0.075
+      0_41        0_4    -0.064     0.037     0.074
+      2_15       0_10     0.004    -0.072     0.072
+      0_60        0_5    -0.001    -0.068     0.068
+      1_38      0_105     0.022    -0.061     0.065
+      0_56      0_203     0.065    -0.003     0.065
+      0_96      0_207     0.055     0.024     0.061
+      0_12       0_10     0.034    -0.047     0.058
+      0_66       0_11     0.042     0.039     0.058
+      0_65      0_108    -0.040     0.041     0.058
+      1_14        0_9    -0.023    -0.052     0.057
+      0_87      0_110     0.051    -0.021     0.055
+      1_29      0_102    -0.042    -0.034     0.054
+      0_56      0_102     0.042    -0.033     0.053
+       2_2      0_107     0.052     0.007     0.053
+       2_8      0_205     0.030     0.021     0.036
+      0_21      0_203     0.021    -0.021     0.029
+      0_75      0_101    -0.026     0.008     0.027
+      2_12      0_202     0.003    -0.025     0.025
+      0_78      0_106    -0.018     0.016     0.024
+      0_84      0_111    -0.014     0.019     0.024
+      0_18      0_100    -0.001    -0.002     0.002
+      0_18        0_0    -0.001     0.000     0.001
+
+Residuals of coordinates of projection centers, sorted by VXZY: 
+  image_id        VX        VY        VZ       VXY     VXYZ
+
+Residuals of orientation of images.
+Sorted by absoulute angle residual derived from rotation marix R: arccos(0.5*(trace(R) - 1.0)):
+  image_id    parametrization     Va1[deg]     Va2[deg]     Va3[deg]       Abs.Angle[deg]            Va1["]            Va2["]            Va3["]         Abs.Angle["] 
+
+Object point residuals: 
+  point_id         VX         VY         VZ      VXYZ
+      1_12   -0.02146    0.00006   -0.00933    0.02340
+      1_30    0.00912    0.01383    0.01011    0.01941
+      1_11    0.01533    0.00723   -0.00358    0.01732
+      1_19   -0.00862   -0.01151    0.00787    0.01639
+      1_22   -0.01558    0.00025    0.00238    0.01577
+      1_33    0.01357   -0.00583   -0.00372    0.01523
+      1_37   -0.01224    0.00646    0.00597    0.01508
+      1_23   -0.00335    0.01357    0.00560    0.01506
+      1_13   -0.01349   -0.00136    0.00478    0.01438
+      1_21    0.01086   -0.00709   -0.00498    0.01389
+      1_32   -0.00250   -0.00753   -0.00941    0.01231
+      1_28    0.00721   -0.00981   -0.00157    0.01228
+      1_41    0.00271    0.00793    0.00892    0.01224
+      1_14    0.00977   -0.00331   -0.00622    0.01205
+      1_24   -0.01060   -0.00162    0.00524    0.01194
+      1_31   -0.00716   -0.00896    0.00069    0.01149
+      1_15    0.00246    0.00922   -0.00045    0.00956
+      1_39    0.00374   -0.00021   -0.00801    0.00884
+       1_1   -0.00387   -0.00603    0.00508    0.00878
+      1_38    0.00705    0.00225    0.00400    0.00841
+      1_29    0.00131   -0.00718   -0.00399    0.00832
+      1_27    0.00772   -0.00014    0.00074    0.00776
+      1_18   -0.00000    0.00558   -0.00497    0.00747
+      1_34    0.00566    0.00267    0.00407    0.00746
+      1_25   -0.00632    0.00280   -0.00097    0.00698
+      1_16    0.00401   -0.00515   -0.00113    0.00663
+      1_10    0.00258   -0.00235   -0.00497    0.00607
+      1_40   -0.00213    0.00404   -0.00392    0.00602
+       1_2    0.00373   -0.00381    0.00176    0.00561
+       1_0   -0.00531    0.00113    0.00137    0.00560
+      1_26    0.00488   -0.00143    0.00127    0.00524
+       1_9    0.00438    0.00069   -0.00196    0.00485
+      1_17   -0.00153    0.00296   -0.00116    0.00353
+      1_20   -0.00081    0.00169    0.00278    0.00335
+       1_5   -0.00272    0.00138   -0.00122    0.00329
+      1_48    0.00113    0.00185    0.00209    0.00301
+      1_44   -0.00268    0.00020   -0.00111    0.00290
+      1_36    0.00244    0.00033   -0.00091    0.00262
+      1_45    0.00065   -0.00201   -0.00090    0.00230
+      1_42   -0.00013   -0.00186   -0.00120    0.00222
+      1_35    0.00051    0.00048    0.00088    0.00112
+
