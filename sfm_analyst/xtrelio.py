@@ -351,7 +351,8 @@ def writeBaProblem(projectName, baProblem):
     objectPointFile = os.path.join(projectDirectory,"object_points.txt")
 
     writeObjectPointCollectionsToFile(objectPointFile, baProblem.objectPointsCollections, baProblem.baSettings.noiseForControllPoints)
-
+    print("using noise: ")
+    print(baProblem.baSettings.noiseForControllPoints)
 
     #writing config file
     configFile = open(os.path.join(projectDirectory,"config.yaml"),"w")
