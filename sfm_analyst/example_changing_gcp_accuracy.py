@@ -1,11 +1,13 @@
 import sfmio
 import xtrelio
 import geometry
-import rasterio
 import sgen
 import ba_problem as ba
+
+import rasterio
 import numpy as np
 import os
+import time
 
 flightMissionImages = geometry.ImageCollection(collectionId = 0) #creating empty collection of images with id = 0
 # We create our camera:
@@ -45,16 +47,13 @@ objectPointsCheck = sgen.generateUsingSurfaceModel(rasterioDsm = dsm, givenRange
 listOfObjectPoints = [objectPointsTie, objectPointsControll, objectPointsCheck]
 
 #simulating and solving problem N times
-N = 10
+N = 20
 for runId in range(0,N):
-    baSettings.noiseForControllPoints[1][0] = 0.005 + 0.01*runId
-    baSettings.noiseForControllPoints[1][1] = 0.005 + 0.01*runId
-    baSettings.noiseForControllPoints[1][2] = 0.005 + 0.01*runId
+    baSettings.noiseForControllPoints[1][0] = 0.005 + 0.015*runId
+    baSettings.noiseForControllPoints[1][1] = 0.005 + 0.015*runId
+    baSettings.noiseForControllPoints[1][2] = 0.005 + 0.015*runId
     baSettings.reportFileName = "report_" + str(runId) + ".txt"
     baProblem = ba.BaProblem(listOfObjectPointCollections = listOfObjectPoints, listOfImageCollections = listOfImageCollections, baSettings = baSettings)
     xtrelio.writeBaProblem(outputXtrelDirectoryName, baProblem)
     os.startfile("D:/DANE/Visual_Studio/Python/sfm_analyst/sfm_analyst/ExampleSimulateBaProblem/runxtrel.bat")
-
-
-
-
+    time.sleep(3) #this is important to set - we have to wait until solver finishes

@@ -144,7 +144,33 @@ def createObjectPointCollectionFromXtrelReport(filename, objectCollectionId, ima
         positionInArray = positionInArray + 1
     
     return objectPointCollection
+  
+def getCheckPointRMSEFromXtrelReport(filename):
+    reportFile = open(filename,"r")
+    lines = reportFile.readlines()
+    numberOfCheckPoints = 0
+
+    for line in lines:
+        if len(line) < 28:
+            continue
+        if line[0:27] == "Number of check points    :":
+            elements = line.split()
+            numberOfCheckPoints = int(elements[len(elements)-1])
+            break
     
+    positionOfCheckPointsResiduals = lines.index("Differences in check point coordinates (given - estimated), sorted:\n")
+
+    elements = lines[positionOfCheckPointsResiduals + numberOfCheckPoints + 3].split()
+
+    residuals = np.zeros((4,1))
+    residuals[0,0] = elements[1]
+    residuals[1,0] = elements[3]
+    residuals[2,0] = elements[5]
+    residuals[3,0] = elements[7]
+
+    reportFile.close()
+
+    return residuals
 
 def readCameraFromCamFile(filename):
     if checkCameraFile(filename) == False:
