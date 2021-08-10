@@ -39,13 +39,14 @@ imageRange = sgen.generateProcessingRangeFromImages(rasterioDsm = dsm, listOfIma
 baSettings.placeRaportInProjectDirecotry = False 
 baSettings.reportDirectory = "D:/DANE/Visual_Studio/Python/sfm_analyst/sfm_analyst/ExampleSimulateBaProblem/baReports"
 
+objectPointsTie = sgen.generateUsingSurfaceModel(rasterioDsm = dsm, givenRange = imageRange, generationConfig = structGenConfigTie, id = 0)
+objectPointsControll = sgen.generateUsingSurfaceModel(rasterioDsm = dsm, givenRange = imageRange, generationConfig = structGenConfigControll, id = 1)
+objectPointsCheck = sgen.generateUsingSurfaceModel(rasterioDsm = dsm, givenRange = imageRange, generationConfig = structGenConfigCheck, id = 2)
+listOfObjectPoints = [objectPointsTie, objectPointsControll, objectPointsCheck]
+
 #simulating and solving problem N times
 N = 10
 for runId in range(0,N):
-    objectPointsTie = sgen.generateUsingSurfaceModel(rasterioDsm = dsm, givenRange = imageRange, generationConfig = structGenConfigTie, id = 0)
-    objectPointsControll = sgen.generateUsingSurfaceModel(rasterioDsm = dsm, givenRange = imageRange, generationConfig = structGenConfigControll, id = 1)
-    objectPointsCheck = sgen.generateUsingSurfaceModel(rasterioDsm = dsm, givenRange = imageRange, generationConfig = structGenConfigCheck, id = 2)
-    listOfObjectPoints = [objectPointsTie, objectPointsControll, objectPointsCheck]
     baSettings.noiseForControllPoints[1][0] = 0.005 + 0.01*runId
     baSettings.noiseForControllPoints[1][1] = 0.005 + 0.01*runId
     baSettings.noiseForControllPoints[1][2] = 0.005 + 0.01*runId
