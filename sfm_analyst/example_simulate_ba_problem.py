@@ -11,7 +11,7 @@ import numpy as np
 flightMissionImages = geometry.ImageCollection(collectionId = 0) #creating empty collection of images with id = 0
 # We create our camera:
 missionCamera = geometry.PinholeCamera(name = "myCamera" , pixelSizeMilimeters=0.004, numberOfRows = 4000, numberOfColumns= 6000, principalDistanceMilimeters = 20.0)
-baSettings = xtrelio.readBaSettings("ExampleSimulateBaProblem/inputData/baconfig.yaml") #Reading settings for our problem
+baSettings = xtrelio.readBaSettings("ExampleSimulateBaProblem/inputData/baconfig_eo_noise.yaml") #Reading settings for our problem
 outputXtrelDirectoryName = "ExampleSimulateBaProblem/CaliforniaBaProblem"
 sfmio.importFromExternalOrientationTextfile("ExampleSimulateBaProblem/inputData/CaliforniaEO.txt",' ', #importing external orientation for our images
                                            flightMissionImages,

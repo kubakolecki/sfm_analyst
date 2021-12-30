@@ -292,6 +292,8 @@ def writeBaProblem(projectName, baProblem):
     mapRotationSequenceToName = {"xyz" : "om-fi-ka", "zxz" : "al-ni-ka" }
     workingDirectory = os.getcwd()
     projectDirectory = os.path.join(workingDirectory, projectName)
+    randomNumberGenerator =  np.random.default_rng() #for adding noise
+
     if os.path.isdir(projectDirectory):
         sh.rmtree(projectDirectory)
     
@@ -343,13 +345,24 @@ def writeBaProblem(projectName, baProblem):
     eoFile = open(os.path.join(projectDirectory,"eo.txt"),"w")
     eoFile.write("eofile_v20210309\n")
     for i in range(0, len(baProblem.imageCollections)):
+        collectionId = baProblem.imageCollections[i].id
         for imageId, image in baProblem.imageCollections[i].images.items():
             id = str(i) + "_" + imageId
             eoFile.write("%s " % id)
             rot = transf.Rotation.from_matrix(image.pose.rotation)
             angles = rot.as_euler(image.rotationSequence,degrees = True)
-            eoFile.write("%.5f %.5f %.5f " % (image.pose.translation[0,0], image.pose.translation[1,0], image.pose.translation[2,0] ))
-            eoFile.write("%.5f %.5f %.5f " % (angles[0], angles[1], angles[2]))
+            dX = [0.0, 0.0, 0.0]
+            dAngle = [0.0, 0.0, 0.0]
+            if collectionId in baProblem.baSettings.noiseForExternalOrientation:       
+                dX[0] = randomNumberGenerator.normal(0.0, baProblem.baSettings.noiseForExternalOrientation[collectionId][0], 1)    
+                dX[1] = randomNumberGenerator.normal(0.0, baProblem.baSettings.noiseForExternalOrientation[collectionId][1], 1)
+                dX[2] = randomNumberGenerator.normal(0.0, baProblem.baSettings.noiseForExternalOrientation[collectionId][2], 1)
+                dAngle[0] = randomNumberGenerator.normal(0.0, baProblem.baSettings.noiseForExternalOrientation[collectionId][3], 1)    
+                dAngle[1] = randomNumberGenerator.normal(0.0, baProblem.baSettings.noiseForExternalOrientation[collectionId][4], 1)
+                dAngle[2] = randomNumberGenerator.normal(0.0, baProblem.baSettings.noiseForExternalOrientation[collectionId][5], 1)
+
+            eoFile.write("%.5f %.5f %.5f " % (image.pose.translation[0,0] + dX[0], image.pose.translation[1,0] + dX[1], image.pose.translation[2,0] + dX[2] ))
+            eoFile.write("%.5f %.5f %.5f " % (angles[0] + dAngle[0], angles[1] + dAngle[1], angles[2] + dAngle[2]))
             eoFile.write("%.5f %.5f %.5f " % (image.pose.stdDevTranslation[0], image.pose.stdDevTranslation[1], image.pose.stdDevTranslation[2] ))
             eoFile.write("%.5f %.5f %.5f " % (image.pose.stdDevRotation[0], image.pose.stdDevRotation[1], image.pose.stdDevRotation[2] ))
             eoFile.write("%d %d " % (baProblem.imageCollections[i].observedPosition, baProblem.imageCollections[i].observedOrientation  ))
@@ -361,7 +374,6 @@ def writeBaProblem(projectName, baProblem):
     #writing image point measurements
 
     imagePointFile = open(os.path.join(projectDirectory,"image_observations.txt"),"w")
-    randomNumberGenerator =  np.random.default_rng()
     for imageId, listOfMeasurements in baProblem.imagePointsPerImage.items():
         imagePointFile.write("%s\n" % imageId)
         for imagePoint in listOfMeasurements:
