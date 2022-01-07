@@ -144,6 +144,38 @@ def createObjectPointCollectionFromXtrelReport(filename, objectCollectionId, ima
         positionInArray = positionInArray + 1
     
     return objectPointCollection
+
+def getNumberOfPointsFromXtrelReport(filename):
+    reportFile = open(filename,"r")
+    lines = reportFile.readlines()
+    pointStatistics = {}
+    for line in lines:
+        if len(line) < 28:
+            continue
+        if line[0:27] == "Number of controll points :":
+            elements = line.split()
+            pointStatistics["controll"] = int(elements[len(elements)-1])
+        if line[0:27] == "Number of tie points      :":
+            elements = line.split()
+            pointStatistics["tie"] = int(elements[len(elements)-1])
+        if line[0:27] == "Number of check points    :":
+            elements = line.split()
+            pointStatistics["check"] = int(elements[len(elements)-1])
+            break
+    return pointStatistics
+
+def getSigmaZeroFromXtrelReport(filename):
+    reportFile = open(filename,"r")
+    lines = reportFile.readlines()
+    for line in lines:
+        if len(line) < 50:
+            continue
+        if line[0:49] == "Square root of  variance of unit weight (sigma0):":
+            sigmaString = line.split()[-1]
+            sigma = float(sigmaString[0:sigmaString.find("[")])
+            return sigma
+
+
   
 def getCheckPointRMSEFromXtrelReport(filename):
     reportFile = open(filename,"r")
@@ -360,7 +392,6 @@ def writeBaProblem(projectName, baProblem):
                 dAngle[0] = randomNumberGenerator.normal(0.0, baProblem.baSettings.noiseForExternalOrientation[collectionId][3], 1)    
                 dAngle[1] = randomNumberGenerator.normal(0.0, baProblem.baSettings.noiseForExternalOrientation[collectionId][4], 1)
                 dAngle[2] = randomNumberGenerator.normal(0.0, baProblem.baSettings.noiseForExternalOrientation[collectionId][5], 1)
-
             eoFile.write("%.5f %.5f %.5f " % (image.pose.translation[0,0] + dX[0], image.pose.translation[1,0] + dX[1], image.pose.translation[2,0] + dX[2] ))
             eoFile.write("%.5f %.5f %.5f " % (angles[0] + dAngle[0], angles[1] + dAngle[1], angles[2] + dAngle[2]))
             eoFile.write("%.5f %.5f %.5f " % (image.pose.stdDevTranslation[0], image.pose.stdDevTranslation[1], image.pose.stdDevTranslation[2] ))

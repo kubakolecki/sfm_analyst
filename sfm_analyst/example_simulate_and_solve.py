@@ -40,7 +40,7 @@ baSettings.placeRaportInProjectDirecotry = False
 baSettings.reportDirectory = "D:/DANE/Visual_Studio/Python/sfm_analyst/sfm_analyst/ExampleSimulateBaProblem/baReports"
 
 #simulating and solving problem N times
-N = 5
+N = 1
 for runId in range(0,N):
     objectPointsTie = sgen.generateUsingSurfaceModel(rasterioDsm = dsm, givenRange = imageRange, generationConfig = structGenConfigTie, id = 0)
     objectPointsControll = sgen.generateUsingSurfaceModel(rasterioDsm = dsm, givenRange = imageRange, generationConfig = structGenConfigControll, id = 1)
