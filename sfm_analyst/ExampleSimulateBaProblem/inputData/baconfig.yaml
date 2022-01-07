@@ -1,6 +1,6 @@
 lossFunction: NONE #NONE, CAUCHY, HUBER
 lossFunctionParameter: 1.5
-noiseForImagePoints: 0.25
+noiseForImagePoints: 0.6
 noiseForControllPoints:
 1 0.01 0.01 0.012
 noiseForExternalOrientation:
