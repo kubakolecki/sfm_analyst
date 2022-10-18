@@ -60,7 +60,7 @@ class BaProblem:
             if typeOfPoint == "tie" and numberOfRays > 1:
                 validImagePoints.append(imagePoint)
                 continue
-            if typeOfPoint == "controll" and numberOfRays > 0:
+            if typeOfPoint == "control" and numberOfRays > 0:
                 validImagePoints.append(imagePoint)
                 continue
             if typeOfPoint == "check" and numberOfRays > 1:

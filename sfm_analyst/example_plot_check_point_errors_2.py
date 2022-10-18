@@ -24,6 +24,6 @@ for reportId in range(0,N):
 
 plt.plot(plotdata[:,0], plotdata[:,1])
 plt.grid()
-plt.xlabel("std. dev. of ground controll points [m]")
+plt.xlabel("std. dev. of ground control points [m]")
 plt.ylabel("RMSE on check points [m]")
 plt.show()

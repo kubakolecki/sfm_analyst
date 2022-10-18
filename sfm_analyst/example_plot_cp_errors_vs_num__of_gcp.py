@@ -22,9 +22,9 @@ for reportFile in reportFiles:
     sigma = xtrelio.getSigmaZeroFromXtrelReport(reportFileFullPath)
     if (sigma > 2): #a sort of herustic check if optimization was scucessfull
         indicesOfLargeSigma.append(counter)
-    sigmaZeroForPlotting[counter,0] = pointStatistics["controll"]
+    sigmaZeroForPlotting[counter,0] = pointStatistics["control"]
     sigmaZeroForPlotting[counter,1] = sigma
-    errorsForPlotting[counter,0] = pointStatistics["controll"]
+    errorsForPlotting[counter,0] = pointStatistics["control"]
     errorsForPlotting[counter,1] = np.sqrt( gcpErrors[0]*gcpErrors[0] + gcpErrors[1]*gcpErrors[1]) #horizontal (2D, XY) error
     errorsForPlotting[counter,2] = gcpErrors[2] #Z error
     errorsForPlotting[counter,3] = gcpErrors[3] #3D error (XYZ)

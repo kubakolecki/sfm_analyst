@@ -27,7 +27,7 @@ listOfImageCollections.append(flightMissionImages)
 stdDevControllPoints = np.array([baSettings.noiseForControllPoints[1][0], baSettings.noiseForControllPoints[1][1], baSettings.noiseForControllPoints[1][2] ])
 
 structGenConfigTie = sgen.StructGenConfig(cellSize = 65, pointsPerCell = 2, dispersion = 1.5, approach = "uniform")
-structGenConfigControll = sgen.StructGenConfig(cellSize = 65, pointsPerCell = 1, dispersion= 1.0, standardDeviation = stdDevControllPoints, approach = "uniform", typeOfPoints= "controll")
+structGenConfigControll = sgen.StructGenConfig(cellSize = 65, pointsPerCell = 1, dispersion= 1.0, standardDeviation = stdDevControllPoints, approach = "uniform", typeOfPoints= "control")
 structGenConfigCheck = sgen.StructGenConfig(cellSize = 100, pointsPerCell = 1, dispersion= 1.0, approach = "uniform", typeOfPoints= "check")
 
 imageRange = sgen.generateProcessingRangeFromImages(rasterioDsm = dsm, listOfImageCollections = listOfImageCollections)
@@ -59,6 +59,6 @@ print("len(listOfObjectPoints):", len(listOfObjectPoints))
 #building ba problem
 baProblem = ba.BaProblem(listOfObjectPointCollections = listOfObjectPoints, listOfImageCollections = listOfImageCollections, baSettings = ba.BaSettings())
 sfmio.writeRaysToDxf("rays_tie.dxf",baProblem.objectPointsCollections, baProblem.imageCollections ,"tie",9)
-sfmio.writeRaysToDxf("rays_controll.dxf",baProblem.objectPointsCollections, baProblem.imageCollections ,"controll",1)
+sfmio.writeRaysToDxf("rays_control.dxf",baProblem.objectPointsCollections, baProblem.imageCollections ,"control",1)
 
 xtrelio.writeBaProblem(outputXtrelDirectoryName, baProblem)

@@ -15,4 +15,4 @@ listOfImageCollections.append(imagesWithEstimatedEO)
 listOfObjectPointCollections.append(objectPointCollection)
 
 sfmio.writeRaysToDxf("rays_estimated_tie.dxf", listOfObjectPointCollections, listOfImageCollections, "tie", 9)
-sfmio.writeRaysToDxf("rays_estimated_controll.dxf", listOfObjectPointCollections, listOfImageCollections, "controll", 1)
+sfmio.writeRaysToDxf("rays_estimated_control.dxf", listOfObjectPointCollections, listOfImageCollections, "control", 1)

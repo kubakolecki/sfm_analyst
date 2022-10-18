@@ -11,10 +11,10 @@ class StructGenConfig:
         self.dispersion = dispersion
         self.standardDeviation = standardDeviation
 
-        if (typeOfPoints == "tie" or typeOfPoints == "controll" or typeOfPoints == "check"):
+        if (typeOfPoints == "tie" or typeOfPoints == "control" or typeOfPoints == "check"):
             self.typeOfPoints = typeOfPoints
         else:
-            print("WARNING! In sgen.StuctGenConfig::__init__ typeOfPoints should be \"tie\" , \"controll\" or \"check\",  but \" ", typeOfPoints , "\" type given." )
+            print("WARNING! In sgen.StuctGenConfig::__init__ typeOfPoints should be \"tie\" , \"control\" or \"check\",  but \" ", typeOfPoints , "\" type given." )
             print("WARNING! In sgen.StuctGenConfig::__init__ setting the typeOfPoints to \"tie\" and contiune processing." )
             self.typeOfPoints = "tie"
 
@@ -29,7 +29,7 @@ class StructGenConfig:
     pointsPerCell = 5
     dispresion = 4.0
     standardDeviation = np.array([0.02, 0.02, 0.03])
-    typeOfPoints = "tie" #tie, controll, check
+    typeOfPoints = "tie" #tie, control, check
     approach = "uniform" #uniform or gausssian
 
 

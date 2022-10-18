@@ -7,6 +7,8 @@ import os as os
 import shutil as sh
 import scipy.spatial.transform as transf
 
+blunderThreshold = 4.0 #if noise exceeds input sigma blunderThreshold times, it is treaed as blunder and truncated to blunderThreshold*simga
+
 def createImageCollectionFromXtrelReport(filename, collectionId):
     reportFile = open(filename,"r")
     lines = reportFile.readlines()
@@ -91,7 +93,7 @@ def createObjectPointCollectionFromXtrelReport(filename, objectCollectionId, ima
     for line in lines:
         if len(line) < 28:
             continue
-        if line[0:27] == "Number of controll points :":
+        if line[0:27] == "Number of control points :":
             elements = line.split()
             numberOfControllPoints = int(elements[len(elements)-1])
         if line[0:27] == "Number of tie points      :":
@@ -133,7 +135,7 @@ def createObjectPointCollectionFromXtrelReport(filename, objectCollectionId, ima
     objectPointCollection = geometry.ObjectPointCollection(collectionId = objectCollectionId)
     objectPointCollection.reserve(len(pointCoordinates))
 
-    idToTypeMap = {0 : "tie", 3 : "controll", 4 : "check"}
+    idToTypeMap = {0 : "tie", 3 : "control", 4 : "check"}
     positionInArray = 0
     for pointId, coordinates in pointCoordinates.items():
         objectPointCollection.insertPoint(
@@ -152,9 +154,9 @@ def getNumberOfPointsFromXtrelReport(filename):
     for line in lines:
         if len(line) < 28:
             continue
-        if line[0:27] == "Number of controll points :":
+        if line[0:27] == "Number of control points :":
             elements = line.split()
-            pointStatistics["controll"] = int(elements[len(elements)-1])
+            pointStatistics["control"] = int(elements[len(elements)-1])
         if line[0:27] == "Number of tie points      :":
             elements = line.split()
             pointStatistics["tie"] = int(elements[len(elements)-1])
@@ -297,7 +299,7 @@ def checkCameraFile(filename):
     return result
 
 def writeObjectPointCollectionsToFile(filename, objectPointCollections, noise = {} ):
-    typeToIdMap = {"tie" : 0, "controll" : 3, "check" : 4}
+    typeToIdMap = {"tie" : 0, "control" : 3, "check" : 4}
     file = open(filename,"w")
     for objectPointCollection in objectPointCollections:
         randomNumberGenerator =  np.random.default_rng()
@@ -314,6 +316,13 @@ def writeObjectPointCollectionsToFile(filename, objectPointCollections, noise = 
                 dx = randomNumberGenerator.normal(0.0, noise[objectPointCollection.collectionId][0], 1)
                 dy = randomNumberGenerator.normal(0.0, noise[objectPointCollection.collectionId][1], 1)
                 dz = randomNumberGenerator.normal(0.0, noise[objectPointCollection.collectionId][2], 1)
+                #preventing blunders to appear:
+                if abs(dx) > blunderThreshold * noise[objectPointCollection.collectionId][0]:
+                    dx = np.sign(dx) * blunderThreshold * noise[objectPointCollection.collectionId][0]
+                if abs(dy) > blunderThreshold * noise[objectPointCollection.collectionId][1]:
+                    dy = np.sign(dy) * blunderThreshold * noise[objectPointCollection.collectionId][1]
+                if abs(dz) > blunderThreshold * noise[objectPointCollection.collectionId][2]:
+                    dz = np.sign(dz) *blunderThreshold * noise[objectPointCollection.collectionId][2]
             file.write("%.5f %.5f %.5f " % (objectPointCollection.coordinates[0,i] + dx, objectPointCollection.coordinates[1,i] + dy, objectPointCollection.coordinates[2,i] + dz))
             file.write("%d " % typeToIdMap[objectPointCollection.types[i]])
             file.write("%.5f %.5f %.5f\n" % (objectPointCollection.standardDeviations[0,i], objectPointCollection.standardDeviations[1,i], objectPointCollection.standardDeviations[2,i]))
@@ -392,6 +401,12 @@ def writeBaProblem(projectName, baProblem):
                 dAngle[0] = randomNumberGenerator.normal(0.0, baProblem.baSettings.noiseForExternalOrientation[collectionId][3], 1)    
                 dAngle[1] = randomNumberGenerator.normal(0.0, baProblem.baSettings.noiseForExternalOrientation[collectionId][4], 1)
                 dAngle[2] = randomNumberGenerator.normal(0.0, baProblem.baSettings.noiseForExternalOrientation[collectionId][5], 1)
+                #preventing blunders:
+                for j in range(0,3):
+                    if abs(dX[j]) > blunderThreshold * baProblem.baSettings.noiseForExternalOrientation[collectionId][j]:
+                        dX[j] = np.sign(dX[j])*blunderThreshold * baProblem.baSettings.noiseForExternalOrientation[collectionId][i]
+                    if abs(dAngle[j]) > blunderThreshold * baProblem.baSettings.noiseForExternalOrientation[collectionId][j+3]:
+                        dAngle[j] = np.sign(dAngle[j])*blunderThreshold * baProblem.baSettings.noiseForExternalOrientation[collectionId][j+3] 
             eoFile.write("%.5f %.5f %.5f " % (image.pose.translation[0,0] + dX[0], image.pose.translation[1,0] + dX[1], image.pose.translation[2,0] + dX[2] ))
             eoFile.write("%.5f %.5f %.5f " % (angles[0] + dAngle[0], angles[1] + dAngle[1], angles[2] + dAngle[2]))
             eoFile.write("%.5f %.5f %.5f " % (image.pose.stdDevTranslation[0], image.pose.stdDevTranslation[1], image.pose.stdDevTranslation[2] ))
@@ -413,6 +428,10 @@ def writeBaProblem(projectName, baProblem):
             if baProblem.baSettings.noiseForImagePoints > 0:
                 dx = randomNumberGenerator.normal(0.0, baProblem.baSettings.noiseForImagePoints, 1)
                 dy = randomNumberGenerator.normal(0.0, baProblem.baSettings.noiseForImagePoints, 1)
+                if abs(dx) > blunderThreshold * baProblem.baSettings.noiseForImagePoints:
+                    dx = np.sign(dx)*blunderThreshold * baProblem.baSettings.noiseForImagePoints
+                if abs(dy) > blunderThreshold * baProblem.baSettings.noiseForImagePoints:
+                    dy = np.sign(dy)*blunderThreshold * baProblem.baSettings.noiseForImagePoints    
             imagePointFile.write("%s %.4f %.4f 1\n" % (imagePoint.getCombinedPointName(), imagePoint.observation.x + dx, imagePoint.observation.y + dy ))
     imagePointFile.close()
 

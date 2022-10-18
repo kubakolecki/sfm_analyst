@@ -219,7 +219,7 @@ def importFromExternalOrientationTextfile(filename, delimiter, imageCollection, 
 
 
 def writeObjectPointsToFile(filename, objectPointCollection):
-    typeToIdMap = {"tie" : 0, "controll" : 3, "check" : 4}
+    typeToIdMap = {"tie" : 0, "control" : 3, "check" : 4}
     npoints = objectPointCollection.getNumberOfPoints()
     file = open(filename,"w")    
     for i in range(0,npoints):

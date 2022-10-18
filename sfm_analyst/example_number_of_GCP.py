@@ -9,7 +9,7 @@ import numpy as np
 import os
 import time
 
-#the accuracy of controllpoints is to be set in config *.yaml file
+#the accuracy of control points is to be set in config *.yaml file
 
 flightMissionImages = geometry.ImageCollection(collectionId = 0) #creating empty collection of images with id = 0
 # We create our camera:
@@ -55,7 +55,7 @@ GCPCellSizeRange = range(140,14,-2) #iterating through this range will impact th
 NumOfSamples = 5 #how many samle to use for each gcp cell size
 
 for cellSz in GCPCellSizeRange:
-    structGenConfigControll = sgen.StructGenConfig(cellSize = cellSz, pointsPerCell = 1, dispersion= 1.0, standardDeviation = stdDevControllPoints, approach = "uniform", typeOfPoints= "controll")
+    structGenConfigControll = sgen.StructGenConfig(cellSize = cellSz, pointsPerCell = 1, dispersion= 1.0, standardDeviation = stdDevControllPoints, approach = "uniform", typeOfPoints= "control")
     objectPointsControll = sgen.generateUsingSurfaceModel(rasterioDsm = dsm, givenRange = imageRange, generationConfig = structGenConfigControll, id = 1)
     listOfObjectPoints = [objectPointsTie, objectPointsControll, objectPointsCheck]
   
