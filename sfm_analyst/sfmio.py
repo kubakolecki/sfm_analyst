@@ -1,5 +1,6 @@
 import geometry
 import numpy as np
+import os as os
 import conversions as conv
 
 class Camera3DModel:
@@ -33,12 +34,14 @@ def writeMaterials(filename):
 
     objFile.close()
 
-def writeImageCollectionToObj(imageCollection, filename,* , imageWidthInMeters, axesLenghtInMeters):
-    writeMaterials("materials.mtl")
+def write3DVisualizationOfImages(*,imageCollection, outputDirectory , nameOf3DModel, imageWidthInMeters, axesLenghtInMeters):
     
-    objFilename = filename + ".obj"
-    dxfFilename = filename + "_axes.dxf"
+    pathFileMaterials = os.path.join(outputDirectory,nameOf3DModel + "_materials.mtl")
+    pathFileObj = os.path.join(outputDirectory,nameOf3DModel + "_images.obj")
+    pathFileDxf = os.path.join(outputDirectory,nameOf3DModel + "_image_axes.dxf")
     
+    writeMaterials(pathFileMaterials)
+
     imageId = 0
     
     camera3DModels = {}
@@ -80,8 +83,8 @@ def writeImageCollectionToObj(imageCollection, filename,* , imageWidthInMeters, 
 
         imageId = imageId+1
 
-    objFile = open(objFilename,"w")    
-    objFile.write("mtllib materials.mtl\n")
+    objFile = open(pathFileObj,"w")    
+    objFile.write("%s\n" % pathFileMaterials)
     #printing vertices
     objFile.write("\n#vertices\n")
 
@@ -112,7 +115,7 @@ def writeImageCollectionToObj(imageCollection, filename,* , imageWidthInMeters, 
         objFile.write("f %d//%d %d//%d %d//%d %d//%d\n" % (c.idsOfFrustumVertices[0], c.idsOfNormalVectors[4], c.idsOfFrustumVertices[1], c.idsOfNormalVectors[4], c.idsOfFrustumVertices[2], c.idsOfNormalVectors[4], c.idsOfFrustumVertices[3] , c.idsOfNormalVectors[4] ))
     objFile.close()
 
-    dxfFile = open(dxfFilename,"w")
+    dxfFile = open(pathFileDxf,"w")
     dxfFile.write("0\n")
     dxfFile.write("SECTION\n")
     dxfFile.write("2\n")

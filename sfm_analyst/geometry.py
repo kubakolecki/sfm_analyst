@@ -147,6 +147,9 @@ class ImageCollection:
 
     def addImage(self, image, id):
         self.images[id] = image
+
+    def getNumberOfImages(self):
+        return len(self.images)
     
     id = 0
     observedPosition = False
@@ -209,10 +212,18 @@ class ObjectPointCollection:
 class Point2D:
     def __init__(self, x = 0.0, y = 0.0):
         self.x = x
-        self.y = y
-    
+        self.y = y    
     x = 0.0
     y = 0.0
+
+class ObservationsInImages:
+    def __init__(self):
+        self.observations = []
+    def add(self,idOfImageCollection, idOfImage, imagePoint:Point2D ):
+        self.observations.append((idOfImageCollection, idOfImage, imagePoint))
+    def getNumberOfPoints(self):
+        return len(self.observations)
+
 
 class ImagePoint:
     def __init__(self, x, y, idOfImageCollection, idOfImage, idOfObjectPointCollection, idOfObjectPoint):
@@ -243,7 +254,7 @@ def projectObjectPointCollectionToImage(image, objectPointCollection, idStart, i
     return  project(image, selectedObjectPoints)
 
 
-def project(image, objectPoints):
+def project(image: Image, objectPoints: np.ndarray) -> np.ndarray:
     #calculating pose that is used for projection
     #translation = np.matmul(image.pose.rotation, -image.pose.translation)
     #pose = Pose(translation, image.pose.rotation)
@@ -255,3 +266,42 @@ def project(image, objectPoints):
     projectedImagePoints[1,:] =np.divide(projectedImagePoints[1,:],projectedImagePoints[2,:]) #in pixels
     projectedImagePoints[2,:] =np.ones((1,projectedImagePoints.shape[1]) ) #in pixels
     return projectedImagePoints
+
+def computeMultiVeiwIntersection(observations: ObservationsInImages, imageCollections : list[ImageCollection] ):
+    numberOfPoints = observations.getNumberOfPoints()
+    A = np.zeros((2*numberOfPoints,3))
+    L = np.zeros((2*numberOfPoints,1))
+    for i in range(0,numberOfPoints):
+        observation = observations.observations[i]
+        image = imageCollections[observation[0]].images[observation[1]]
+        R = image.pose.rotation
+        p = image.pose.translation
+        c = -image.camera.cameraMatrix[0,0]
+
+        x = observation[2].x/c
+        y = observation[2].y/c
+
+        A[2*i,:] = np.transpose(x*R[:,2] + R[:,0])
+        A[2*i+1,:] = np.transpose(y*R[:,2] + R[:,1])
+
+        #A[2*i,0] = x*R[0,2]  + R[0,0]
+        #A[2*i,1] = x*R[1,2]  + R[1,0]
+        #A[2*i,2] = x*R[2,2]  + R[2,0]
+        #
+        #A[2*i+1,0] = y*R[0,2]  + R[0,1]
+        #A[2*i+1,1] = y*R[1,2]  + R[1,1]
+        #A[2*i+1,2] = y*R[2,2]  + R[2,1]
+
+        L[2*i] = A[2*i,0]*p[0] + A[2*i,1]*p[1] + A[2*i,2]*p[2]  
+        L[2*i+1] = A[2*i+1,0]*p[0] + A[2*i+1,1]*p[1] + A[2*i+1,2]*p[2]
+
+    #AT = np.transpose(A)
+    #ATA = np.matmul(AT,A)
+    #Q = np.linalg.inv(ATA)
+    #ATL = np.matmul(AT,L)
+    #objectPointCoordinates = np.matmul(Q,ATL)
+    leastSquareSolution = np.linalg.lstsq(A,L,rcond = None)
+
+    return leastSquareSolution[0]
+  
+    
