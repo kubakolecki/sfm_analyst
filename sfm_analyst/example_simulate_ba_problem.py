@@ -2,11 +2,12 @@ import sfmio
 import xtrelio
 import geometry
 import rasterio
-import overlap_analysis as oa
+import raster_based_analysis as rba
 import sgen
 import ba_problem as ba
 import numpy as np
 import os as os
+import subprocess
 import time
 
 if __name__ == '__main__':
@@ -17,9 +18,10 @@ if __name__ == '__main__':
     pathDirecotryOutputBAProblem = r"D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem\CaliforniaBaProblem"
     pathDirectoryOutputRsults = r"D:\DANE\Visual_Studio\Python\sfm_analyst\sfm_analyst\ExampleSimulateBaProblem\outputAndVisualisation"
     
+    pathFileXtrel = r"D:\DANE\xtrel\xtrel.exe"
+    
     pathFileInputConfg = os.path.join(pathDirectoryInputData,"baconfig_eo_noise.yaml")
-    #pathFileInputEO = os.path.join(pathDirectoryInputData,"CaliforniaEO.txt")
-    pathFileInputEO = os.path.join(pathDirectoryInputData,"California87EO.txt")
+    pathFileInputEO = os.path.join(pathDirectoryInputData,"California30EO.txt")
     pathFileInputDSM = os.path.join(pathDirectoryInputData,"CaliforniaDSM.tif")
     
     pathFileOutputImageOverlap = os.path.join(pathDirectoryOutputRsults,"overlap.tif")
@@ -49,41 +51,21 @@ if __name__ == '__main__':
     
     stdDevControllPoints = np.array([baSettings.noiseForControllPoints[1][0], baSettings.noiseForControllPoints[1][1], baSettings.noiseForControllPoints[1][2] ])
     
-    structGenConfigTie = sgen.StructGenConfig(cellSize = 65, pointsPerCell = 2, dispersion = 1.5, approach = "uniform")
+    structGenConfigTie = sgen.StructGenConfig(cellSize = 65, pointsPerCell = 4, dispersion = 1.5, approach = "uniform")
     structGenConfigControll = sgen.StructGenConfig(cellSize = 65, pointsPerCell = 1, dispersion= 1.0, standardDeviation = stdDevControllPoints, approach = "uniform", typeOfPoints= "control")
     structGenConfigCheck = sgen.StructGenConfig(cellSize = 100, pointsPerCell = 1, dispersion= 1.0, approach = "uniform", typeOfPoints= "check")
     
     #Generate the bounding box on the terrain to deal with:
     imageRange = sgen.generateProcessingRangeFromImages(rasterioDsm = dsm, listOfImageCollections = listOfImageCollections)
     
-    imageOverlapMulti, projectionsOfDSMMulti = oa.computeImageOverlapMultiprocess(rasterioDsm = dsm, listOfImageCollections = listOfImageCollections, numberOfProcesses = 4)
+    imageOverlapMulti, projectionsOfDSM = rba.computeImageOverlapMultiprocess(rasterioDsm = dsm, listOfImageCollections = listOfImageCollections, numberOfProcesses = 8)
     
-    print("writing observation data:")
-    fil = open("obsData.txt","w")
-    for rowCol, observations in projectionsOfDSMMulti.items():
-        for observationData in observations.observations:
-            fil.write("%d %d %d %s %s\n" % (rowCol[0], rowCol[1], len(observations.observations), observationData[0], observationData[1]))
-    fil.close()    
+    
+    print("number of dsm points to estimate in intersection: ", len(projectionsOfDSM) )
 
+    
+    triangulatedObjectPoints = rba.triangulatePointsMultiprocess(projectionsOfDSM, listOfImageCollections, 8)
 
-    #imageOverlap, projectionsOfDSM = oa.computeImageOverlap(rasterioDsm = dsm, listOfImageCollections = listOfImageCollections)
-    
-    print("number of dsm points to estimate in intersection: ", len(projectionsOfDSMMulti) )
-    #print("number of dsm points to estimate in intersection: ", len(projectionsOfDSM) )
-    
-    timeStart = time.monotonic_ns()
-    counter = 0
-    for rowCol, observations in projectionsOfDSMMulti.items():
-        numberOfObs = observations.getNumberOfPoints()
-        if numberOfObs < 2:
-            continue 
-        objectPoint = geometry.computeMultiVeiwIntersection(observations, listOfImageCollections)
-        counter +=1
-        if counter % 100000 == 0:
-            timeEnd =time.monotonic_ns()
-            #print("computed object point: ", objectPoint)
-            print("elapsed time in intersection: ",counter, timeEnd - timeStart  )
-    
 
     overlapTargetProfile = dsm.profile.copy()
     
@@ -135,3 +117,23 @@ if __name__ == '__main__':
     sfmio.writeRaysToDxf(pathFileOutputRaysControl,baProblem.objectPointsCollections, baProblem.imageCollections ,"control",1)
     sfmio.writeObjectPointsToFile(pathFileOutputTiePoints, objectPointsTie)
     sfmio.writeObjectPointsToFile(pathFileOutputControlPoints, objectPointsControll)
+
+    pathFileConfigBA = os.path.join(pathDirecotryOutputBAProblem,"config.yaml")
+
+    print("starting xtrel")
+    timeStart = time.monotonic_ns()
+    completedProcess = subprocess.run([pathFileXtrel,pathFileConfigBA], capture_output=True )
+    timeEnd = time.monotonic_ns()
+    print(f"xtrel process finished wiht code {completedProcess.returncode}, elapsed time {timeEnd - timeStart}")
+
+    imageCollectionOptimized = xtrelio.createImageCollectionFromXtrelReport(os.path.join(pathDirecotryOutputBAProblem,"report.txt"), 0)
+
+    print("optimized image collection:")
+    print(f"collection id = {imageCollectionOptimized.id}")
+    for key, image in imageCollectionOptimized.images.items():
+        print(f"image id = {key}, position: {image.pose.translation[0,0]}, {image.pose.translation[1,0]} ,{image.pose.translation[2,0]}")
+
+
+    coordinatesToEvaluate = rba.triangulatePointsMultiprocess(projectionsOfDSM, [imageCollectionOptimized], 8)
+    rba.computeResidualRasters(dsm,coordinatesToEvaluate)
+    

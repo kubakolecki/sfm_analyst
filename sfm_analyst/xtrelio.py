@@ -9,7 +9,7 @@ import scipy.spatial.transform as transf
 
 blunderThreshold = 4.0 #if noise exceeds input sigma blunderThreshold times, it is treaed as blunder and truncated to blunderThreshold*simga
 
-def createImageCollectionFromXtrelReport(filename, collectionId):
+def createImageCollectionFromXtrelReport(filename: str, collectionId: int):
     reportFile = open(filename,"r")
     lines = reportFile.readlines()
     numberOfImages = 0
@@ -330,7 +330,7 @@ def writeObjectPointCollectionsToFile(filename, objectPointCollections, noise = 
 
 def writeBaProblem(projectName, baProblem):
     
-    mapRotationSequenceToName = {"xyz" : "om-fi-ka", "zxz" : "al-ni-ka" }
+    mapRotationSequenceToName = {"XYZ" : "om-fi-ka", "ZXZ" : "al-ni-ka"  }
     workingDirectory = os.getcwd()
     projectDirectory = os.path.join(workingDirectory, projectName)
     randomNumberGenerator =  np.random.default_rng() #for adding noise

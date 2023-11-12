@@ -1,6 +1,7 @@
 import numpy as np
 import conversions as conv
 import scipy.spatial.transform as transf
+import copy as cp
 
 class Range:
     def __init__(self, bottomLeft = np.array([0,0]), topRight = np.array([1,1])):
@@ -134,7 +135,8 @@ class Image:
 
     def setCamera(self, camera):
         self.camera = camera
-   
+
+
     rotationSequence = "xyz"
     camera = PinholeCamera(name = "default_camera", pixelSizeMilimeters = 0.006, numberOfRows = 6000, numberOfColumns = 4000, principalDistanceMilimeters = 20)
     pose = Pose()
@@ -144,6 +146,15 @@ class ImageCollection:
 
     def __init__(self,*, collectionId):
         self.id = collectionId
+        self.observedPosition = False
+        self.observedOrientation = False
+        self.images = {}
+
+    def __copy__(self):
+        copiedInstance = ImageCollection(collectionId = self.id)
+        copiedInstance.observedPosition = self.observedPosition
+        copiedInstance.observedOrientation = self.observedOrientation
+        copiedInstance.images = cp.deepcopy(self.images)
 
     def addImage(self, image, id):
         self.images[id] = image
@@ -182,6 +193,31 @@ class ObjectPointCollection:
         self.types[position] = pointType
         self.pointIdsToPositionMap[id] = position
 
+    def insertPointWithNormal(self, x, y, z, stdDevX, stdDevY, stdDevZ, vnx, vny, vnz, pointType, id, position):
+        self.coordinates[0, position] = x
+        self.coordinates[1, position] = y
+        self.coordinates[2, position] = z
+        self.standardDeviations[0, position] = stdDevX
+        self.standardDeviations[1, position] = stdDevY
+        self.standardDeviations[2, position] = stdDevZ
+        self.ids[position] = id
+        self.types[position] = pointType
+        self.pointIdsToPositionMap[id] = position
+        self.pointIdsToNormalVectorMap[id] = np.array([vnx, vny, vnz])
+
+    def insertPointWithNormalAndVisibilityDistance(self, x, y, z, stdDevX, stdDevY, stdDevZ, vnx, vny, vnz, visibilityDistance, pointType, id, position):
+        self.coordinates[0, position] = x
+        self.coordinates[1, position] = y
+        self.coordinates[2, position] = z
+        self.standardDeviations[0, position] = stdDevX
+        self.standardDeviations[1, position] = stdDevY
+        self.standardDeviations[2, position] = stdDevZ
+        self.ids[position] = id
+        self.types[position] = pointType
+        self.pointIdsToPositionMap[id] = position
+        self.pointIdsToNormalVectorMap[id] = np.array([vnx, vny, vnz])
+        self.pointIdsToVisibilityDistanceMap[id] = visibilityDistance
+
     def removeLastNPoints(self, n):
         if n < self.coordinates.shape[1]:
             for i in range(0,n):
@@ -207,6 +243,8 @@ class ObjectPointCollection:
     types = ["tie" for i in range(10)]
     imagesIds = [[] for i in range(10)] #list of tuples: (idOfImageCollection, idOfImage)
     pointIdsToPositionMap = {}
+    pointIdsToNormalVectorMap = {}
+    pointIdsToVisibilityDistanceMap = {}
     
 
 class Point2D:
@@ -247,8 +285,6 @@ class ImagePoint:
     idOfObjectPoint = 0
     
     
-
-
 def projectObjectPointCollectionToImage(image, objectPointCollection, idStart, idEnd ):
     selectedObjectPoints = objectPointCollection.coordinates[:, idStart:idEnd]
     return  project(image, selectedObjectPoints)
@@ -273,6 +309,7 @@ def computeMultiVeiwIntersection(observations: ObservationsInImages, imageCollec
     L = np.zeros((2*numberOfPoints,1))
     for i in range(0,numberOfPoints):
         observation = observations.observations[i]
+        print(f"image collection id = {observation[0]}, image id = {observation[1]}")
         image = imageCollections[observation[0]].images[observation[1]]
         R = image.pose.rotation
         p = image.pose.translation
@@ -295,11 +332,6 @@ def computeMultiVeiwIntersection(observations: ObservationsInImages, imageCollec
         L[2*i] = A[2*i,0]*p[0] + A[2*i,1]*p[1] + A[2*i,2]*p[2]  
         L[2*i+1] = A[2*i+1,0]*p[0] + A[2*i+1,1]*p[1] + A[2*i+1,2]*p[2]
 
-    #AT = np.transpose(A)
-    #ATA = np.matmul(AT,A)
-    #Q = np.linalg.inv(ATA)
-    #ATL = np.matmul(AT,L)
-    #objectPointCoordinates = np.matmul(Q,ATL)
     leastSquareSolution = np.linalg.lstsq(A,L,rcond = None)
 
     return leastSquareSolution[0]

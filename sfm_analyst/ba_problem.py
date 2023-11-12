@@ -38,6 +38,22 @@ class BaProblem:
                     indicesOfPointsInImage = np.where(areInImage)[1]
                     #creating image points
                     for i in indicesOfPointsInImage:
+                        if objectPointCollection.ids[i] in objectPointCollection.pointIdsToNormalVectorMap:
+                            normalVector = objectPointCollection.pointIdsToNormalVectorMap[objectPointCollection.ids[i]]
+                            objectPointCoordinates = objectPointCollection.coordinates[0:3,i]
+                            vectorFromPointToCamera = [image.pose.translation[0,0]-objectPointCoordinates[0],image.pose.translation[1,0]-objectPointCoordinates[1],image.pose.translation[2,0]-objectPointCoordinates[2]]
+                            vectorFromPointToCamera /= np.linalg.norm(vectorFromPointToCamera)
+                            cosinus = vectorFromPointToCamera[0]*normalVector[0] + vectorFromPointToCamera[1]*normalVector[1] + vectorFromPointToCamera[2]*normalVector[2]
+                            if cosinus < 0.0:
+                                continue
+
+                        if objectPointCollection.ids[i] in objectPointCollection.pointIdsToVisibilityDistanceMap:
+                            distanceThreshold = objectPointCollection.pointIdsToVisibilityDistanceMap[objectPointCollection.ids[i]]
+                            vectorFromPointToCamera = [image.pose.translation[0,0]-objectPointCoordinates[0],image.pose.translation[1,0]-objectPointCoordinates[1],image.pose.translation[2,0]-objectPointCoordinates[2]]
+                            distanceToPoint = np.linalg.norm(vectorFromPointToCamera)
+                            if distanceToPoint > distanceThreshold:
+                                continue
+
                         self.imagePoints.append(geom.ImagePoint(imagePointsArray[0,i],
                                                                 imagePointsArray[1,i],
                                                                 idOfImageCollection,
@@ -48,7 +64,7 @@ class BaProblem:
         self.__removeSingleRays()
         self.__buildMapOfImagePointsPerImage()
 
-
+ 
 
     def __removeSingleRays(self):
         print("number of image points before filtration: ", len(self.imagePoints) )
